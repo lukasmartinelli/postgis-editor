@@ -80,9 +80,10 @@ function createDebugLayers(map, id, source) {
 		//Layer don't exist yet
 	}
 
-	map.addLayer(createLineLayer(id + "_line", source));
-	map.addLayer(createPointLayer(id + "_point", source));
-	map.addLayer(createPolygonLayer(id + "_polygon", source));
+    layerBelow = 'water';
+	map.addLayer(createLineLayer(id + "_line", source), layerBelow);
+	map.addLayer(createPointLayer(id + "_point", source), layerBelow);
+	map.addLayer(createPolygonLayer(id + "_polygon", source), layerBelow);
 };
 
 var layers = [];
