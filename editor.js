@@ -11,7 +11,8 @@ map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
 var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
     lineNumbers: true,
     mode: 'text/x-plsql',
-    theme: 'dracula'
+    theme: 'dracula',
+	viewportMargin: Infinity
 });
 
 var cn = {

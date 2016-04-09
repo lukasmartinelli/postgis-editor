@@ -45,7 +45,17 @@
 				</label>
         <div id="tab-content1" class="tab-content">
 					<textarea id="editor">
-SELECT * FROM osm_building_polygon LIMIT 1000
+SELECT
+  osm_id_geometry(osm_id, geometry) as osm_id,
+  geometry,
+  road_type(
+    road_class(type, service, access),
+    type, construction, tracktype, service
+  ) AS type,
+  road_class(type, service, access) AS class,
+  road_oneway(oneway) AS oneway, structure
+FROM road_z11
+ORDER BY z_order ASC
           </textarea>
         </div>
     </li>
