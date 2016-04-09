@@ -4,9 +4,15 @@
   "description": "A PostGIS SQL query editor focused on accessible spatial development.",
   "main": "main.js",
   "scripts": {
-    "start": "./node_modules/.bin/electron main.js"
+    "start": "./node_modules/.bin/electron main.js",
+    "build": "babel src -d dist"
+  },
+  "babel": {
+    "presets": ["react"]
   },
   "devDependencies": {
+    "babel-cli": "^6.7.5",
+    "babel-preset-react": "^6.5.0",
     "electron-prebuilt": "^0.34.3",
     "electron-rebuild": "^1.0.2"
   },
