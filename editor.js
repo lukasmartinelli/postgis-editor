@@ -22,9 +22,30 @@ var cn = {
     password: 'osm'
 };
 
+var randomColor = require("randomcolor");
 var dbgeo = require("dbgeo");
 var pgp = require('pg-promise')();
 var db = pgp(cn);
+
+function createLineLayer() {
+
+}
+
+function createPointLayer() {
+
+}
+
+function createPolygonLayer(id, source) {
+    return {
+        "id": id,
+        "type": "fill",
+        "source": source,
+        "paint": {
+            "fill-color": randomColor(),
+            "fill-opacity": 0.8
+        }
+    };
+}
 
 function runAndDisplayQuery(subquery) {
     var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
@@ -45,14 +66,7 @@ function runAndDisplayQuery(subquery) {
                 "data": result
             });
 
-            map.addLayer({
-                "id": "markers",
-                "type": "line",
-                "source": "markers",
-                "paint": {
-                    "line-color": "hsl(45, 48%, 52%)",
-                }
-            });
+            map.addLayer(createPolygonLayer("markers_1", "markers"));
         });
     }).catch(function (error) {
         console.log(error);

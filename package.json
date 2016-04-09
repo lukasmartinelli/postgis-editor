@@ -13,6 +13,7 @@
   "dependencies": {
     "dbgeo": "^0.1.0",
     "jquery": "^2.1.4",
-    "pg-promise": "^3.7.0"
+    "pg-promise": "^3.7.0",
+    "randomcolor": "^0.4.4"
   }
 }
