@@ -23,6 +23,14 @@
     font-weight: normal;
     font-style: normal;
 }
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    line-height: 20px;
+    color: white;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+}
 
 .app {
     padding: 0;
@@ -31,7 +39,7 @@
 }
 
 .dark {
-    background-color: #404040;
+    background-color: #282c34;
 }
 
 .toolbar-container {
@@ -62,20 +70,14 @@
 	margin-left: 60%;
 	width: 40%;
 
-	background-color: #282a36;
 }
 
 .dark .editor-container {
-    background-color: #404040;
+	background: #282c34
 }
 
 .CodeMirror {
     font: 12px/20px normal Menlo, Droidsansmono, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
-}
-
-.CodeMirror-gutter {
-	background: #404040;
-    border-right: 1px solid rgba(0,0,0,0.2);
 }
 
 .button {
@@ -92,8 +94,6 @@
     font-family: 'Open Sans Bold', sans-serif;
     line-height: 20px;
     font-size: 12px;
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased;
 
 	color: white;
     background: #3887be;
@@ -118,7 +118,7 @@
     white-space: nowrap;
 
 	color: white;
-    background-color: #404040;
+    background-color: #21252b;
 }
 
 .toolbar-button:hover {
@@ -128,7 +128,7 @@
 
 .toolbar-button-primary {
     color: white;
-    background: #3887be;
+    background: #73c990;
 }
 
 .toolbar-button > i, .toolbar-button > span {
@@ -157,4 +157,91 @@
 }
 
 .mapboxgl-ctrl > button {
+}
+
+.swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    text-indent: -1000px;
+    overflow: hidden;
+    background: #000;
+}
+
+.tabs {
+	list-style: none;
+	position: relative;
+	text-align: left;
+	margin: 0;
+	padding-left: 0;
+
+	box-shadow: inset 0 -1px 0 #181a1f;
+    background: #21252b;
+}
+
+.tabs li {
+    display: inline-block;
+}
+
+.tabs input[type="radio"] {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+}
+
+.tabs label {
+	text-align: center;
+    display: block;
+    padding: 5px 25px;
+    border-radius: 4px 4px 0 0;
+    font-weight: normal;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease-in-out;
+	-webkit-transition: all 0.2s ease-in-out;
+}
+
+.tabs  .tab-content{
+    z-index: 2;
+    display: none;
+    overflow: hidden;
+    width: 100%;
+    padding: 10px 0px;
+    position: absolute;
+    top: 53px;
+    left: 0;
+}
+.tabs .swatch {
+	position: absolute;
+    top: 10px;
+    left: 7px;
+    z-index: 3;
+}
+
+.tabs .fa-close {
+	position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+    padding: 6px 6px;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    transform: scale(0);
+    transition: transform .08s;
+}
+
+.tabs label:hover .fa-close {
+    transform: scale(1);
+    transition-duration: .16s;
+}
+
+.tabs  [id^="tab"]:checked + label {
+	background-color: #282c34;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.06), 1px 0 0 #181a1f;
+}
+
+.tabs [id^="tab"]:checked ~ [id^="tab-content"] {
+    display: block;
 }

@@ -9,12 +9,12 @@
 
 
 .cm-s-dracula.CodeMirror, .cm-s-dracula .CodeMirror-gutters {
-  background-color: #404040;
+  background: #282c34;
   color: #f8f8f2 !important;
   border: none;
 }
 .cm-s-dracula .CodeMirror-gutters { color: #282a36; }
-.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0; }
+.cm-s-dracula .CodeMirror-cursor { border-left: solid thin #f8f8f0 !important; }
 .cm-s-dracula .CodeMirror-linenumber { color: #6D8A88; }
 .cm-s-dracula.CodeMirror-focused div.CodeMirror-selected { background: rgba(255, 255, 255, 0.10); }
 .cm-s-dracula .CodeMirror-line::selection, .cm-s-dracula .CodeMirror-line > span::selection, .cm-s-dracula .CodeMirror-line > span > span::selection { background: rgba(255, 255, 255, 0.10); }

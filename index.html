@@ -34,9 +34,32 @@
 					<div id="map"></div>
 			</div>
 			<div class="editor-container">
+
+<ul class="tabs">
+    <li>
+        <input type="radio" name="tabs" id="tab1" checked />
+				<label for="tab1">
+					<span class="swatch" style="background: rgb(110, 214, 25);"></span>
+					<span>place_of_worship.sql</span>
+					<i class="fa fa-close"></i>
+				</label>
+        <div id="tab-content1" class="tab-content">
 					<textarea id="editor">
 SELECT * FROM osm_building_polygon LIMIT 1000
           </textarea>
+        </div>
+    </li>
+    <li>
+        <input type="radio" name="tabs" id="tab2" />
+				<label for="tab2">
+					<span class="swatch" style="background: rgb(242, 111, 165);"></span>
+					<span>admin_border.sql</span>
+					<i class="fa fa-close"></i>
+				</label>
+        <div id="tab-content2" class="tab-content">
+        </div>
+    </li>
+</ul>
 			</div>
 	</div>
 

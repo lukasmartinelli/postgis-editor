@@ -1,7 +1,6 @@
 # PostGIS Query Editor
 
-PostGIS is one of the most powerful tools for GIS tasks. The PostGIS query editor
-wants to be an accessible query editor for quick PostGIS tasks.
+A very accessible PostGIS query editor and visualizer.
 
 ## Get Started
 
