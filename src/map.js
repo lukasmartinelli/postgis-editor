@@ -1,21 +1,34 @@
 import * as _ from 'lodash';
 import randomColor from 'randomcolor';
+import React from 'react';
+import ReactDOM from 'react-dom';
 
-export class Map {
-    constructor(mapOptions) {
-        var defaults = {
+export class Map extends React.Component {
+    constructor() {
+		super();
+        this.layers = [];
+    }
+
+	componentDidMount() {
+        this.map = new mapboxgl.Map({
             container: 'map',
             style: 'mapbox://styles/morgenkaffee/cimsw88b8002l8sko6hhm2pr1',
             center: [5.9701, 46.1503],
             zoom: 9
-        };
-        this.mapOptions = _.extend(mapOptions, defaults);
-
-        this.layers = [];
-        this.map = new mapboxgl.Map(this.mapOptions);
+		});
         this.map.addControl(new mapboxgl.Navigation({ position: 'top-left' }));
         this.map.on('click', (e) => this.displayPopup(e));
-    }
+
+		window.events.subscribe('sourceChanged', (data) => {
+			this.recreateDebugLayers(data.layerId, data.sourceId, data.geojson);
+		});
+	}
+
+	render() {
+		return <div className="map-container">
+			<div id="map"></div>
+		</div>;
+	}
 
     displayPopup(e) {
         var features = this.map.queryRenderedFeatures(e.point, {

@@ -19,17 +19,8 @@
 </head>
 
 <body class="dark">
+  <div id="appRoot">
 	<div class="app">
-			<div class="toolbar-container">
-				<button id="run" class="toolbar-button toolbar-button-primary">
-					<i class="fa fa-play"></i>
-					<span>Run</span>
-				</button>
-				<button class="toolbar-button">
-					<i class="toolbar-icon fa fa-cog"></i>
-					<span>Settings</span>
-        </button>
-      </div>
 			<div class="map-container">
 					<div id="map"></div>
 			</div>
@@ -45,18 +36,6 @@
 				</label>
         <div id="tab-content1" class="tab-content">
 					<textarea id="editor">
-SELECT
-  osm_id_geometry(osm_id, geometry) as osm_id,
-  geometry,
-  road_type(
-    road_class(type, service, access),
-    type, construction, tracktype, service
-  ) AS type,
-  road_class(type, service, access) AS class,
-  road_oneway(oneway) AS oneway, structure
-FROM road_z11
-ORDER BY z_order ASC
-LIMIT 2000
           </textarea>
         </div>
     </li>
@@ -137,6 +116,7 @@ LIMIT 2000
 			</div>
 
 	</div>
+</div>
   <script>
     require('./dist/app');
   </script>
