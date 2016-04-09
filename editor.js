@@ -50,7 +50,7 @@ function createPointLayer(id, source) {
         "type": "circle",
         "source": source,
         "paint": {
-            "circle-radius": 5,
+            "circle-radius": 2,
             "circle-color": randomColor(),
         },
 		"filter": [	"all", ["==", "$type", "Point" ]]
