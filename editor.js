@@ -124,3 +124,38 @@ document.getElementById("run").addEventListener("click", function() {
     var query = editor.getValue();
     runAndDisplayQuery(query);
 });
+
+function renderDebugPopup(props) {
+	var html = '<table class="debug-props">';
+	for (var key in props) {
+		html += '<tr class="debug-prop">';
+		html += '<td class="debug-prop-key">';
+		html += key;
+		html += '</td>';
+		html += '<td class="debug-prop-value">';
+		html += props[key];
+		html += '</td>';
+		html += '</tr>';
+	}
+	html += '</div>';
+	return html;
+}
+
+// When a click event occurs near a marker icon, open a popup at the location of
+// the feature, with description HTML from its properties.
+map.on('click', function (e) {
+    var features = map.queryRenderedFeatures(e.point, { layers: ['debug_line'] });
+
+    if (!features.length) {
+        return;
+    }
+
+    var feature = features[0];
+
+    // Populate the popup and set its coordinates
+    // based on the feature found.
+    var popup = new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(renderDebugPopup(feature.properties))
+        .addTo(map);
+});
