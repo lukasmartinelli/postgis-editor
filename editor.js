@@ -25,38 +25,41 @@ var cn = {
 var dbgeo = require("dbgeo");
 var pgp = require('pg-promise')();
 var db = pgp(cn);
-var subquery = "select from osm_poi_point where name <> '' limit 10"
-var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)), t* from (" + subquery + ") as t";
 
-db.any(transformQuery, true).then(function (data) {
-    dbgeo.parse({
-        "data": data,
-        "outputFormat": "geojson",
-        "geometryColumn": "geom",
-        "geometryType": "geojson"
-    },function(error, result) {
-        if (error) {
-            return console.log(error);
-        }
-
-        map.addSource("markers", {
-            "type": "geojson",
-            "data": result
-        });
-
-        map.addLayer({
-            "id": "markers",
-            "type": "symbol",
-            "source": "markers",
-            "layout": {
-    "icon-image": "monument-15",
-                "text-field": "{name}",
-                "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
-                "text-offset": [0, 0.6],
-                "text-anchor": "top"
+function runAndDisplayQuery(subquery) {
+    var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
+    console.log(transformQuery);
+    db.any(transformQuery, true).then(function (data) {
+        dbgeo.parse({
+            "data": data,
+            "outputFormat": "geojson",
+            "geometryColumn": "geom",
+            "geometryType": "geojson"
+        },function(error, result) {
+            if (error) {
+                return console.log(error);
             }
+
+            map.addSource("markers", {
+                "type": "geojson",
+                "data": result
+            });
+
+            map.addLayer({
+                "id": "markers",
+                "type": "line",
+                "source": "markers",
+                "paint": {
+                    "line-color": "hsl(45, 48%, 52%)",
+                }
+            });
         });
+    }).catch(function (error) {
+        console.log(error);
     });
-}).catch(function (error) {
-    console.log(error);
+}
+
+document.getElementById("run").addEventListener("click", function() {
+    var query = editor.getValue();
+    runAndDisplayQuery(query);
 });
