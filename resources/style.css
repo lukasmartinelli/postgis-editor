@@ -1,0 +1,160 @@
+
+@font-face {
+    font-family: 'Open Sans Bold';
+    src: url('fonts/opensans-bold-webfont.eot');
+    src: url('fonts/opensans-bold-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans-bold-webfont.woff2') format('woff2'),
+         url('fonts/opensans-bold-webfont.woff') format('woff'),
+         url('fonts/opensans-bold-webfont.ttf') format('truetype'),
+         url('fonts/opensans-bold-webfont.svg#open_sansbold') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+@font-face {
+    font-family: 'Open Sans';
+    src: url('fonts/opensans-regular-webfont.eot');
+    src: url('fonts/opensans-regular-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/opensans-regular-webfont.woff2') format('woff2'),
+         url('fonts/opensans-regular-webfont.woff') format('woff'),
+         url('fonts/opensans-regular-webfont.ttf') format('truetype'),
+         url('fonts/opensans-regular-webfont.svg#open_sansregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.app {
+    padding: 0;
+	margin-left: 80px;
+	position: relative;
+}
+
+.dark {
+    background-color: #404040;
+}
+
+.toolbar-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+	left: -80px;
+	width: 80px;
+	padding: 10px;
+}
+
+.map-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+	width: 60%;
+}
+
+.map-container > div{
+	height: 100%;
+}
+
+.editor-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+	margin-left: 60%;
+	width: 40%;
+
+	background-color: #282a36;
+}
+
+.dark .editor-container {
+    background-color: #404040;
+}
+
+.CodeMirror {
+    font: 12px/20px normal Menlo, Droidsansmono, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+}
+
+.CodeMirror-gutter {
+	background: #404040;
+    border-right: 1px solid rgba(0,0,0,0.2);
+}
+
+.button {
+    text-align: center;
+    display: inline-block;
+    margin: 0px;
+    padding: 10px;
+    position: relative;
+    border: none;
+    cursor: pointer;
+    border-radius: 3px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font-family: 'Open Sans Bold', sans-serif;
+    line-height: 20px;
+    font-size: 12px;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+
+	color: white;
+    background: #3887be;
+}
+
+.toolbar-button {
+    display: block;
+    width: 60px;
+    margin-bottom: 10px;
+    padding: 10px 5px;
+
+    border-radius: 3px;
+	border: none;
+
+	font-family: 'Open Sans Bold', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+	color: white;
+    background-color: #404040;
+}
+
+.toolbar-button:hover {
+	color: white;
+    background: rgba(255,255,255,.1);
+}
+
+.toolbar-button-primary {
+    color: white;
+    background: #3887be;
+}
+
+.toolbar-button > i, .toolbar-button > span {
+	display: block;
+}
+
+.toolbar-button > i {
+	margin-bottom: 4px;
+}
+
+.dark .button {
+    color: #fff;
+    background-color: rgba(255,255,255,0.10);
+}
+
+
+.dark .button:hover {
+	background-color: rgba(255,255,255,0.25);
+}
+
+.button.short {
+	height: 30px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    vertical-align: middle;
+}
+
+.mapboxgl-ctrl > button {
+}

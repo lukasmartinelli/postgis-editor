@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8' />
+    <title></title>
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.js'></script>
+
+    <link rel="stylesheet" type="text/css" href="resources/normalize.css" />
+    <link rel="stylesheet" type="text/css" href="resources/css/font-awesome.css" />
+
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.16.0/mapbox-gl.css' rel='stylesheet' />
+    <link rel="stylesheet" type="text/css" href="resources/codemirror/codemirror.css" />
+    <link rel="stylesheet" type="text/css" href="resources/codemirror/dracula.css" />
+
+    <script src="resources/codemirror/codemirror.js"></script>
+    <script src="resources/codemirror/sql.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="resources/style.css" />
+</head>
+<body class="dark">
+	<div class="app">
+			<div class="toolbar-container">
+				<button class="toolbar-button toolbar-button-primary">
+					<i class="fa fa-play"></i>
+					<span>Run</span>
+				</button>
+				<button class="toolbar-button">
+					<i class="toolbar-icon fa fa-cog"></i>
+					<span>Settings</span>
+</button>
+      </div>
+			<div class="map-container">
+					<div id="map"></div>
+			</div>
+			<div class="editor-container">
+					<textarea id="editor">
+SELECT * FROM
+my_great_table;
+</textarea>
+			</div>
+	</div>
+
+  <script type="text/javascript">
+		window.$ = window.jQuery = require('jquery');
+
+		$(function() {
+	mapboxgl.accessToken = 'pk.eyJ1IjoibW9yZ2Vua2FmZmVlIiwiYSI6IjIzcmN0NlkifQ.0LRTNgCc-envt9d5MzR75w';
+	var map = new mapboxgl.Map({
+			container: 'map', // container id
+			style: 'mapbox://styles/morgenkaffee/cimsw88b8002l8sko6hhm2pr1',
+			//style: 'mapbox://styles/mapbox/streets-v8',
+			center: [5.9701, 46.1503], // starting position
+			zoom: 9 // starting zoom
+	});
+	map.addControl(new mapboxgl.Navigation({position: 'top-left'}));
+
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        lineNumbers: true,
+        mode: 'text/x-plsql',
+        theme: 'dracula'
+      });
+      var cn = {
+        host: '192.168.99.100',
+        port: 32772,
+        database: 'osm',
+        user: 'osm',
+        password: 'osm'
+      };
+			var dbgeo = require("dbgeo");
+      var pgp = require('pg-promise')();
+      var db = pgp(cn);
+			db.any("select ST_AsGeoJSON(ST_Transform(geometry, 4326)) as geom, name from osm_poi_point where name <> '' limit 10", true)
+					.then(function (data) {
+dbgeo.parse({
+  "data": data,
+  "outputFormat": "geojson",
+  "geometryColumn": "geom",
+  "geometryType": "geojson"
+},function(error, result) {
+  if (error) {
+    return console.log(error);
+  }
+  // This will log a valid GeoJSON object
+  console.log(JSON.stringify(result));
+map.addSource("markers", {
+        "type": "geojson",
+        "data": result
+});
+
+   map.addLayer({
+        "id": "markers",
+        "type": "symbol",
+        "source": "markers",
+        "layout": {
+"icon-image": "monument-15",
+            "text-field": "{name}",
+            "text-font": ["Open Sans Semibold", "Arial Unicode MS Bold"],
+            "text-offset": [0, 0.6],
+            "text-anchor": "top"
+        }
+    });
+
+});
+
+
+					})
+					.catch(function (error) {
+							console.log(error);
+							// error;
+					});
+		});
+  </script>
+</body>
+</html>

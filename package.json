@@ -1,0 +1,18 @@
+{
+  "name": "postgis-editor",
+  "version": "1.0.0",
+  "description": "A PostGIS SQL query editor focused on accessible spatial development.",
+  "main": "main.js",
+  "scripts": {
+    "start": "./node_modules/.bin/electron main.js"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.34.3",
+    "electron-rebuild": "^1.0.2"
+  },
+  "dependencies": {
+    "dbgeo": "^0.1.0",
+    "jquery": "^2.1.4",
+    "pg-promise": "^3.7.0"
+  }
+}
