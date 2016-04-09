@@ -8,11 +8,11 @@ It is still early days..but you can already execute and visualize a query.
 
 ## Get Started
 
-Th
-Install node dependencies.
+Install node dependencies and generate `dist`.
 
 ```bash
 npm install
+npm run build
 ```
 
 Run Electron app.
