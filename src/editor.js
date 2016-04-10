@@ -1,51 +1,49 @@
-import dbgeo from "dbgeo";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Codemirror from 'react-codemirror';
+import {Table} from './table.js';
 
-var pgp = require('pg-promise')();
+var testCodeSample = `
+SELECT
+  osm_id_geometry(osm_id, geometry) as osm_id,
+  geometry,
+  road_type(
+    road_class(type, service, access),
+    type, construction, tracktype, service
+  ) AS type,
+  road_class(type, service, access) AS class,
+  road_oneway(oneway) AS oneway, structure
+FROM road_z11
+ORDER BY z_order ASC
+LIMIT 2000
+`;
 
-export class Editor {
-    constructor(map) {
-        this.map = map;
-        var cn = {
-            host: '192.168.99.100',
-            port: 32772,
-            database: 'osm',
-            user: 'osm',
-            password: 'osm'
+export class Editor extends React.Component {
+	constructor(props) {
+		super(props);
+		this.updateCode = this.updateCode.bind(this);
+		this.state = {
+            code: testCodeSample
         };
+    }
 
-        this.db = pgp(cn);
-        this.codeMirror = CodeMirror.fromTextArea(document.getElementById('editor'), {
+	updateCode(newCode) {
+        this.setState({
+            code: newCode
+        });
+    }
+
+	render() {
+		var codeMirrorOptions = {
             lineNumbers: true,
             mode: 'text/x-plsql',
             theme: 'dracula',
             viewportMargin: Infinity
-        });
+		};
 
-        document.getElementById("run").addEventListener("click", () => {
-            var query = this.codeMirror.getValue();
-            this.runAndDisplayQuery(query);
-        });
-    }
-
-    runAndDisplayQuery(subquery) {
-        var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
-        var self = this;
-
-        this.db.any(transformQuery, true).then((data) => {
-            dbgeo.parse({
-                "data": data,
-                "outputFormat": "geojson",
-                "geometryColumn": "geom",
-                "geometryType": "geojson"
-            }, (error, result) => {
-                if (error) {
-                    return console.log(error);
-                }
-
-                this.map.recreateDebugLayers('layer_query1', 'source_query1', result);
-            });
-        }).catch((error) => {
-            console.log(error);
-        });
-    }
+		return <div className="editor-container">
+			<Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />
+            <Table />
+		</div>;
+	}
 }
