@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Codemirror from 'react-codemirror';
+import CodemirrorSqlMode from 'codemirror/mode/sql/sql.js';
 import {Table} from './table.js';
 
 var testCodeSample = `
