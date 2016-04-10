@@ -26,16 +26,27 @@ export class Toolbar extends React.Component {
     constructor(props) {
         super(props);
 		this.runQuery = this.runQuery.bind(this);
-		this.saveConnection = this.saveConnection(this);
-		this.connectDatabase = this.connectDatabase.bind(this);
+		this.saveConnection = this.saveConnection.bind(this);
+		this.showEditConnectionModal = this.showEditConnectionModal.bind(this);
+		this.closeEditConnectionModal = this.closeEditConnectionModal.bind(this);
 		this.state = {
-			editConnection: false
+			editConnection: false,
+			connection: {
+                host: '192.168.99.100',
+                port: 32772,
+                database: 'osm',
+                user: 'osm',
+                password: 'osm'
+			}
 		};
     }
 
-    connectDatabase() {
+    showEditConnectionModal() {
 		this.setState({editConnection: true});
-        this.props.db.connect(dbTestConn);
+    }
+
+    closeEditConnectionModal() {
+		this.setState({editConnection: false});
     }
 
     runQuery() {
@@ -45,6 +56,8 @@ export class Toolbar extends React.Component {
     saveConnection() {
 		//TODO: Find better name for editConnection
 		this.setState({editConnection: false});
+        this.props.db.connect(this.state.connection);
+        console.log('Connected', this.state.connection);
     }
 
 	render() {
@@ -53,7 +66,7 @@ export class Toolbar extends React.Component {
 				<i className="fa fa-play"></i>
 				<span>Run</span>
 			</button>
-			<button onClick={this.connectDatabase} className="toolbar-button">
+			<button onClick={this.showEditConnectionModal} className="toolbar-button">
 				<i className="toolbar-icon fa fa-database"></i>
 				<span>Connect</span>
 			</button>
@@ -64,6 +77,17 @@ export class Toolbar extends React.Component {
 			  onRequestClose={this.saveConnection}
 			>
 			  <h1>Hi Guys! Please set the connection details</h1>
+              <button onClick={this.closeEditConnectionModal}>Close Modal...</button>
+		<section class="postgis-form">
+        <div>
+			<input type="text" placeholder="pg_hostname" value={this.state.connection.host} />
+			<input type="text" placeholder="database_name" value={this.state.connection.database} />
+            <input type="text" placeholder="pg_port" value={this.state.connection.port} />
+			<input type="text" placeholder="pg_username" value={this.state.connection.user} />
+            <input type="password" placeholder="user password" value={this.state.connection.password} />
+        </div>
+		</section>
+              <button onClick={this.saveConnection}>Save Connection</button>
 			</Modal>
 
 		</div>;
