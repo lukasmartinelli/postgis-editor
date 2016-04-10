@@ -30,6 +30,7 @@ export class Toolbar extends React.Component {
 		this.showEditConnectionModal = this.showEditConnectionModal.bind(this);
 		this.closeEditConnectionModal = this.closeEditConnectionModal.bind(this);
 		this.state = {
+            enableRun: false,
 			editConnection: false,
 			connection: {
                 host: '192.168.99.100',
@@ -55,14 +56,22 @@ export class Toolbar extends React.Component {
 
     saveConnection() {
 		//TODO: Find better name for editConnection
-		this.setState({editConnection: false});
+		this.setState({
+            enableRun: true,
+            editConnection: false
+        });
         this.props.db.connect(this.state.connection);
         console.log('Connected', this.state.connection);
     }
 
 	render() {
+        var runButtonClassName = "toolbar-button ";
+        if (this.state.enableRun === true) {
+            runButtonClassName += "toolbar-button-primary";
+        }
+
 		return <div className="toolbar-container">
-			<button onClick={this.runQuery} className="toolbar-button toolbar-button-primary">
+			<button onClick={this.runQuery} className={runButtonClassName}>
 				<i className="fa fa-play"></i>
 				<span>Run</span>
 			</button>
