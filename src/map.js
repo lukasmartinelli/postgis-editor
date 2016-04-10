@@ -28,10 +28,9 @@ export class Map extends React.Component {
 		window.events.remove('displayData', displayData);
     }
 
-    displayData(geojson) {
-        var geometryCount = geojson.features.length;
-        console.log(`Display ${geometryCount} geometries`)
-        this.recreateDebugLayers("debug_layer", "debug_source", geojson);
+    displayData(result) {
+        console.log(`Display ${result.rowCount} geometries`)
+        this.recreateDebugLayers("debug_layer", "debug_source", result.geojson);
     }
 
 	render() {
@@ -87,6 +86,8 @@ function createDebugLayers(map, id, source, color) {
         //Layer don't exist yet
     }
 
+    //TODO: The original water layer should be below
+    //if we query osm_water_polygon we have weird bugs
     var layerBelow = 'water';
     map.addLayer(createLineLayer(id + "_line", source, color), layerBelow);
     map.addLayer(createPointLayer(id + "_point", source, color), layerBelow);

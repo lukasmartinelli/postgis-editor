@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Codemirror from 'react-codemirror';
 import CodemirrorSqlMode from 'codemirror/mode/sql/sql.js';
-import {Table} from './table.js';
+import {GeoJSONTable} from './table.js';
 
 var testCodeSample = `
 SELECT
@@ -32,14 +32,15 @@ export class Editor extends React.Component {
     componentDidMount() {
 		window.events.subscribe('runQuery', this.runCode);
     }
+
     componentWillUnmount() {
 		window.events.remove('runQuery', this.runCode);
     }
 
     runCode() {
-        this.props.db.runQuery(this.state.code, (err, geojson) => {
+        this.props.db.runQuery(this.state.code, (err, result) => {
             if(err) throw err;
-		    window.events.publish('displayData', geojson);
+		    window.events.publish('displayData', result);
         })
     }
 
@@ -59,7 +60,7 @@ export class Editor extends React.Component {
 
 		return <div className="editor-container">
 			<Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />
-            <Table />
+            <GeoJSONTable />
 		</div>;
 	}
 }

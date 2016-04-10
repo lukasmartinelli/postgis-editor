@@ -9,13 +9,21 @@ export class Database {
 
         //TODO: Use promises instead of callback
         //TODO: Deal with connection not set yet
-        this.db.any(transformQuery, true).then((data) => {
+        this.db.result(transformQuery, true).then((result) => {
             dbgeo.parse({
-                "data": data,
+                "data": result.rows,
                 "outputFormat": "geojson",
                 "geometryColumn": "geom",
                 "geometryType": "geojson"
-            }, cb);
+            }, (err, geojson) => {
+                //TODO: This is solved some pattern somehow
+                cb(err, {
+                    geojson: geojson,
+                    rowCount: result.rowCount,
+                    fields: result.fields,
+                    command: result.command,
+                });
+            });
         }).catch((error) => {
             console.log(error);
         });
