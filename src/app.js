@@ -1,6 +1,7 @@
 import {Map} from './map.js';
-import {Editor, Database} from './editor.js';
+import {Editor} from './editor.js';
 import {Toolbar} from './toolbar.js';
+import {Database} from './database.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Mediator} from 'mediator-js';
@@ -8,11 +9,16 @@ import Codemirror from 'react-codemirror';
 
 
 class App extends React.Component {
+    constructor() {
+        super();
+        this.db = new Database();
+    }
+
 	render() {
 		return <div className="app">
-			<Toolbar />
+			<Toolbar db={this.db} />
 			<Map />
-			<Editor />
+			<Editor db={this.db} />
 		</div>;
 	}
 }

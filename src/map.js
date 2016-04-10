@@ -6,6 +6,7 @@ import ReactDOM from 'react-dom';
 export class Map extends React.Component {
     constructor() {
 		super();
+		this.displayData = this.displayData.bind(this);
         this.layers = [];
     }
 
@@ -17,12 +18,19 @@ export class Map extends React.Component {
             zoom: 9
 		});
         this.map.addControl(new mapboxgl.Navigation({ position: 'top-left' }));
-        this.map.on('click', (e) => this.displayPopup(e));
 
-		window.events.subscribe('sourceChanged', (data) => {
-			this.recreateDebugLayers(data.layerId, data.sourceId, data.geojson);
-		});
+		window.events.subscribe('displayData', this.displayData);
+        this.map.on('click', (e) => this.displayPopup(e));
 	}
+
+    componentWillUnmount() {
+        //TODO: Cleanup Mapbox event handlers
+		window.events.remove('displayData', displayData);
+    }
+
+    displayData(geojson) {
+        this.recreateDebugLayers("debug_layer", "debug_source", geojson);
+    }
 
 	render() {
 		return <div className="map-container">
@@ -141,3 +149,14 @@ function renderDebugPopup(props) {
 	html += '</div>';
 	return html;
 }
+/*
+
+            (error, result) => {
+                if (error) {
+                    return console.log(error);
+                }
+                return result;
+                this.map.recreateDebugLayers('layer_query1', 'source_query1', result);
+            });
+
+            */

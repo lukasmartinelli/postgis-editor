@@ -23,9 +23,24 @@ export class Editor extends React.Component {
 	constructor(props) {
 		super(props);
 		this.updateCode = this.updateCode.bind(this);
+		this.runCode= this.runCode.bind(this);
 		this.state = {
             code: testCodeSample
         };
+    }
+
+    componentDidMount() {
+		window.events.subscribe('runQuery', this.runCode);
+    }
+    componentWillUnmount() {
+		window.events.remove('runQuery', this.runCode);
+    }
+
+    runCode() {
+        this.props.db.runQuery(this.state.code, (err, geojson) => {
+            if(err) throw err;
+		    window.events.publish('displayData', geojson);
+        })
     }
 
 	updateCode(newCode) {
