@@ -30,6 +30,7 @@
     "randomcolor": "^0.4.4",
     "react": "^15.0.1",
     "react-codemirror": "^0.2.6",
+    "react-data-grid": "^0.14.22",
     "react-dom": "^15.0.1"
   }
 }

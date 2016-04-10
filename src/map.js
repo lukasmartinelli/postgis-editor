@@ -29,6 +29,8 @@ export class Map extends React.Component {
     }
 
     displayData(geojson) {
+        var geometryCount = geojson.features.length;
+        console.log(`Display ${geometryCount} geometries`)
         this.recreateDebugLayers("debug_layer", "debug_source", geojson);
     }
 
