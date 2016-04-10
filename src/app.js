@@ -6,6 +6,9 @@ import {Mediator} from 'mediator-js';
 import {Tabs, Pane} from './tabs.js';
 import Codemirror from 'react-codemirror';
 
+//TODO: replace with import
+require('codemirror/mode/sql/sql.js');
+
 
 class App extends React.Component {
 	render() {
@@ -72,30 +75,7 @@ class ToolbarComponent extends React.Component {
 	}
 }
 
-class EditorComponent extends React.Component {
-	render() {
-		return <div className="editor-container">
-			<Tabs selected={0}>
-			  <Pane label="Tab 1">
-				<EditorTab />
-			  </Pane>
-			  <Pane label="Tab 2">
-				<EditorTab />
-			  </Pane>
-			  <Pane label="Tab 3">
-				<EditorTab />
-			  </Pane>
-			</Tabs>
-		</div>;
-	}
-}
-
-class EditorTab extends React.Component {
-	constructor(props) {
-		super(props);
-		this.updateCode = this.updateCode.bind(this);
-		this.state = {
-            code: `
+var testCodeSample = `
 SELECT
   osm_id_geometry(osm_id, geometry) as osm_id,
   geometry,
@@ -108,7 +88,15 @@ SELECT
 FROM road_z11
 ORDER BY z_order ASC
 LIMIT 2000
-			`
+`;
+
+
+class EditorComponent extends React.Component {
+	constructor(props) {
+		super(props);
+		this.updateCode = this.updateCode.bind(this);
+		this.state = {
+            code: testCodeSample
         };
     }
 
@@ -126,14 +114,12 @@ LIMIT 2000
             viewportMargin: Infinity
 		};
 
-		return <div>
+		return <div className="editor-container">
 			<Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />
-			<Table />
+            <Table />
 		</div>;
 	}
 }
-
-
 
 window.onload = function() {
 	// Global mediator for eventing
