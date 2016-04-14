@@ -3,6 +3,10 @@ import ReactDOM from 'react-dom';
 import Codemirror from 'react-codemirror';
 import CodemirrorSqlMode from 'codemirror/mode/sql/sql.js';
 import {GeoJSONTable} from './table.js';
+import Configstore from 'configstore';
+import pkg from '../package.json';
+
+const conf = new Configstore(pkg.name);
 
 var testCodeSample = `
 SELECT
@@ -25,7 +29,7 @@ export class Editor extends React.Component {
 		this.updateCode = this.updateCode.bind(this);
 		this.runCode= this.runCode.bind(this);
 		this.state = {
-            code: testCodeSample
+            code: conf.get('code') || testCodeSample
         };
     }
 
@@ -45,6 +49,7 @@ export class Editor extends React.Component {
     }
 
 	updateCode(newCode) {
+        conf.set('code', newCode);
         this.setState({
             code: newCode
         });

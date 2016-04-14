@@ -1,18 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
+import * as _ from 'lodash';
+import Configstore from 'configstore';
+import pkg from '../package.json';
 
-const customStyles = {
-  content : {
-    top                   : '50%',
-    left                  : '50%',
-    right                 : 'auto',
-    bottom                : 'auto',
-    marginRight           : '-50%',
-    transform             : 'translate(-50%, -50%)'
-  }
-};
-
+const conf = new Configstore(pkg.name);
 
 export class Toolbar extends React.Component {
     constructor(props) {
@@ -28,7 +21,6 @@ export class Toolbar extends React.Component {
 		this.passwordChanged = this.passwordChanged.bind(this);
 		this.dbChanged = this.dbChanged.bind(this);
 
-
 		this.state = {
             enableRun: false,
 			editConnection: false,
@@ -38,6 +30,22 @@ export class Toolbar extends React.Component {
             user: 'osm',
             password: 'osm'
 		};
+        var opts = conf.get('db');
+        if(opts) {
+            this.state = _.extend(this.state, {
+                host: opts.host,
+                port: opts.port,
+                database: opts.database,
+                user: opts.user,
+                password: opts.password
+            });
+        }
+
+        // Fire config load
+        this.loadConfig();
+    }
+
+    loadConfig() {
     }
 
     showEditConnectionModal() {
@@ -58,8 +66,10 @@ export class Toolbar extends React.Component {
             port: this.state.port,
             database: this.state.database,
             user: this.state.user,
-            password: this.state.password,
+            password: this.state.password
         };
+
+        conf.set('db', connOpts);
 
         this.props.db.connect(connOpts).then(obj => {
             obj.done(); // success, release connection;
@@ -70,6 +80,7 @@ export class Toolbar extends React.Component {
                 errorMsg: null
             });
         }).catch(error => {
+            console.log('Could not connect', connOpts);
             this.setState({
                 errorMsg: error.message
             });
@@ -81,7 +92,7 @@ export class Toolbar extends React.Component {
     }
 
     portChanged(event) {
-        this.setState({port: event.target.value});
+        this.setState({port: parseInt(event.target.value)});
     }
 
     userChanged(event) {

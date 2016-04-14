@@ -26,6 +26,7 @@
     "node-sass": "^3.4.2"
   },
   "dependencies": {
+    "configstore": "^2.0.0",
     "dbgeo": "^0.1.0",
     "jquery": "^2.1.4",
     "lodash": "^4.9.0",
