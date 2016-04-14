@@ -1,0 +1,46 @@
+$input-bg-color: darken(#282c34, 3%);
+
+textarea, input[type=password], input[type=text],
+input[type=email], input[type=number] {
+    color: #fff;
+    background: $input-bg-color;
+    border: 1px solid darken($input-bg-color, 7%);
+    -webkit-appearance: none;
+    padding: 5px;
+}
+
+button {
+    padding: 10px 5px;
+    border-radius: 3px;
+	border: none;
+
+	font-family: 'Open Sans Bold', sans-serif;
+    font-size: 12px;
+    text-align: center;
+    -webkit-appearance: none;
+    -webkit-font-smoothing: antialiased;
+
+    cursor: pointer;
+    white-space: nowrap;
+
+	color: white;
+    background-color: #21252b;
+}
+
+.config-field {
+    margin: 15px;
+    display: inline-block;
+    position: relative;
+    width: 160px;
+
+    .config-label {
+        position: absolute;
+        right: -5px;
+        top: 5px;
+        color: rgba(255,255,255,.5);
+    }
+
+    input {
+        width: 100%;
+    }
+}

@@ -1,0 +1,59 @@
+$modal-bg-color: #282c34;
+
+.modal {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    right: auto;
+    bottom: auto;
+    overflow: auto;
+    border-radius: 4px;
+    outline: none;
+    padding: 10px;
+    padding-top: 0px;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+    background-color: $modal-bg-color;
+    max-width: 400px;
+
+    .modal-title {
+        margin-left: 10px;
+        margin-right: 10px;
+    }
+
+    .modal-close {
+        top: 10px;
+        right: 10px;
+        display: block;
+        position: absolute;
+
+        &:hover {
+            cursor: pointer;
+        }
+    }
+
+    .modal-content {
+    }
+}
+
+
+.modal-overlay {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    bottom: 0px;
+    background-color: rgba(0, 0, 0, 0.25);
+}
+
+.modal-confirm {
+    margin: 10px;
+    padding-right: 13px;
+    padding-left: 13px;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.modal-changed {
+    background-color: #73c990;
+}

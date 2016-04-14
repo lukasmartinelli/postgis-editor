@@ -7,7 +7,6 @@ import ReactDOM from 'react-dom';
 import {Mediator} from 'mediator-js';
 import Modal from 'react-modal';
 import Codemirror from 'react-codemirror';
-require('mapbox-gl');
 
 class App extends React.Component {
     constructor() {

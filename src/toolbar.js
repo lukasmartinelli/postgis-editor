@@ -71,24 +71,39 @@ export class Toolbar extends React.Component {
 				<i className="toolbar-icon fa fa-database"></i>
 				<span>Connect</span>
 			</button>
+
 			<Modal
 			  isOpen={this.state.editConnection}
-			  className="dark-modal"
-			  overlayClassName="dark-overlay"
+			  className="modal"
+			  overlayClassName="modal-overlay"
 			  onRequestClose={this.saveConnection}
 			>
-			  <h1>Hi Guys! Please set the connection details</h1>
-              <button onClick={this.closeEditConnectionModal}>Close Modal...</button>
-		<section class="postgis-form">
-        <div>
-			<input type="text" placeholder="pg_hostname" value={this.state.connection.host} />
-			<input type="text" placeholder="database_name" value={this.state.connection.database} />
-            <input type="text" placeholder="pg_port" value={this.state.connection.port} />
-			<input type="text" placeholder="pg_username" value={this.state.connection.user} />
-            <input type="password" placeholder="user password" value={this.state.connection.password} />
-        </div>
-		</section>
-              <button onClick={this.saveConnection}>Save Connection</button>
+			  <h3 className="modal-title">Connect to PostGIS database
+                <i className="fa fa-close modal-close" onClick={this.closeEditConnectionModal}></i>
+              </h3>
+        <section className="modal-content">
+            <div className="config-field">
+                <input type="text" placeholder="hostname" value={this.state.connection.host} />
+                <label className="config-label">host</label>
+            </div>
+            <div className="config-field">
+                <input type="text" placeholder="port" value={this.state.connection.port} />
+                <label className="config-label">port</label>
+            </div>
+            <div className="config-field">
+                <input type="text" placeholder="username" value={this.state.connection.user} />
+                <label className="config-label">user</label>
+            </div>
+            <div className="config-field">
+                <input type="password" placeholder="password" value={this.state.connection.password} />
+                <label className="config-label">pass</label>
+            </div>
+            <div className="config-field">
+                <input type="text" placeholder="database name" value={this.state.connection.database} />
+                <label className="config-label">db</label>
+            </div>
+            <button className="modal-confirm" onClick={this.saveConnection}>Save Connection</button>
+        </section>
 			</Modal>
 
 		</div>;

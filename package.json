@@ -6,9 +6,10 @@
   "scripts": {
     "start": "./node_modules/.bin/electron main.js",
     "build": "npm run es6 && npm run sass",
-    "watch": "babel src -d dist --source-maps inline --watch",
-    "es6": "babel src -d dist --source-maps inline",
-    "sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css"
+    "watch-es6": "babel src -d dist --source-maps inline --watch",
+    "build-es6": "babel src -d dist --source-maps inline",
+    "watch-sass": "nodemon -e scss -x \"npm run build-sass\"",
+    "build-sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css"
   },
   "babel": {
     "presets": [
@@ -28,7 +29,6 @@
     "dbgeo": "^0.1.0",
     "jquery": "^2.1.4",
     "lodash": "^4.9.0",
-    "mapbox-gl": "^0.17.0",
     "mediator-js": "^0.9.9",
     "pg-promise": "^3.7.0",
     "randomcolor": "^0.4.4",

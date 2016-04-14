@@ -113,22 +113,6 @@ body {
     display: block;
     width: 60px;
     margin-bottom: 10px;
-    padding: 10px 5px;
-
-    border-radius: 3px;
-	border: none;
-
-	font-family: 'Open Sans Bold', sans-serif;
-    font-size: 12px;
-    text-align: center;
-    -webkit-appearance: none;
-    -webkit-font-smoothing: antialiased;
-
-    cursor: pointer;
-    white-space: nowrap;
-
-	color: white;
-    background-color: #21252b;
 }
 
 .toolbar-button:hover {
@@ -291,26 +275,5 @@ tr:hover {
     overflow: auto;
 }
 
-.dark-modal {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    right: auto;
-    bottom: auto;
-    overflow: auto;
-    border-radius: 4px;
-    outline: none;
-    padding: 20px;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-    background-color: #282c34;
-}
-
-.dark-overlay {
-    position: fixed;
-    top: 0px;
-    left: 0px;
-    right: 0px;
-    bottom: 0px;
-    background-color: rgba(0, 0, 0, 0.2);
-}
+@import "forms";
+@import "modal";
