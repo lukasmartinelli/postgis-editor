@@ -2,14 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import Modal from 'react-modal';
 
-var dbTestConn = {
-    host: '192.168.99.100',
-    port: 32772,
-    database: 'osm',
-    user: 'osm',
-    password: 'osm'
-};
-
 const customStyles = {
   content : {
     top                   : '50%',
@@ -34,7 +26,7 @@ export class Toolbar extends React.Component {
 			editConnection: false,
 			connection: {
                 host: '192.168.99.100',
-                port: 32772,
+                port: 32769,
                 database: 'osm',
                 user: 'osm',
                 password: 'osm'

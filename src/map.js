@@ -2,6 +2,7 @@ import * as _ from 'lodash';
 import randomColor from 'randomcolor';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import {isGeometry} from './database.js';
 
 export class Map extends React.Component {
     constructor() {
@@ -15,7 +16,9 @@ export class Map extends React.Component {
             container: 'map',
             style: 'mapbox://styles/morgenkaffee/cimsw88b8002l8sko6hhm2pr1',
             center: [5.9701, 46.1503],
-            zoom: 9
+            zoom: 9,
+            touchZoomRotate: true,
+            attributionControl: false
 		});
         this.map.addControl(new mapboxgl.Navigation({ position: 'top-left' }));
 
@@ -88,10 +91,10 @@ function createDebugLayers(map, id, source, color) {
 
     //TODO: The original water layer should be below
     //if we query osm_water_polygon we have weird bugs
-    var layerBelow = 'water';
-    map.addLayer(createLineLayer(id + "_line", source, color), layerBelow);
-    map.addLayer(createPointLayer(id + "_point", source, color), layerBelow);
-    map.addLayer(createPolygonLayer(id + "_polygon", source, color), layerBelow);
+    //var layerBelow = 'water';
+    map.addLayer(createLineLayer(id + "_line", source, color));
+    map.addLayer(createPointLayer(id + "_point", source, color));
+    map.addLayer(createPolygonLayer(id + "_polygon", source, color));
 };
 
 function createLineLayer(id, source, color) {
@@ -137,29 +140,22 @@ function createPolygonLayer(id, source, color) {
     };
 }
 
-function renderDebugPopup(props) {
-	var html = '<table class="debug-props">';
-	for (var key in props) {
-		html += '<tr class="debug-prop">';
-		html += '<td class="debug-prop-key">';
-		html += key;
-		html += '</td>';
-		html += '<td class="debug-prop-value">';
-		html += props[key];
-		html += '</td>';
-		html += '</tr>';
-	}
-	html += '</div>';
-	return html;
+function properties(object) {
+    let arr = [];
+	for (var key in object) {
+        arr.push({ key, value: object[key] });
+    }
+    return arr;
 }
-/*
 
-            (error, result) => {
-                if (error) {
-                    return console.log(error);
-                }
-                return result;
-                this.map.recreateDebugLayers('layer_query1', 'source_query1', result);
-            });
-
-            */
+function renderDebugPopup(props) {
+    var rows = properties(props).filter(p => !isGeometry(p.key)).map(prop => {
+        return `
+		    <tr class="debug-prop">
+                <td class="debug-prop-key">${prop.key}</td>
+                <td class="debug-prop-value">${prop.value}</td>
+            </tr>
+        `;
+    }).join('');
+    return `<table class="debug-props">${rows}</table>`
+}

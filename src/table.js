@@ -1,11 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import DataGrid from 'react-data-grid';
+import {isGeometry} from './database.js';
 
-
-function isGeometry(fieldName) {
-    return fieldName === 'geometry' || fieldName === 'geom';
-}
 
 export class GeoJSONTable extends React.Component {
     constructor(props) {
