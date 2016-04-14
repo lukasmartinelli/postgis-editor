@@ -89,9 +89,6 @@ function createDebugLayers(map, id, source, color) {
         //Layer don't exist yet
     }
 
-    //TODO: The original water layer should be below
-    //if we query osm_water_polygon we have weird bugs
-    //var layerBelow = 'water';
     map.addLayer(createLineLayer(id + "_line", source, color));
     map.addLayer(createPointLayer(id + "_point", source, color));
     map.addLayer(createPolygonLayer(id + "_polygon", source, color));
