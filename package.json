@@ -5,8 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "./node_modules/.bin/electron main.js",
-    "build": "babel src -d dist --source-maps inline",
+    "build": "npm run es6 && npm run sass",
     "watch": "babel src -d dist --source-maps inline --watch",
+    "es6": "babel src -d dist --source-maps inline",
     "sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css"
   },
   "babel": {
