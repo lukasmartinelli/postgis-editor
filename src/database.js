@@ -31,6 +31,7 @@ export class Database {
 
     connect(connectionOptions) {
         this.db = pgp(connectionOptions);
+        return this.db.connect();
     }
 }
 

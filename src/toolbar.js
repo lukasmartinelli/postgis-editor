@@ -53,11 +53,6 @@ export class Toolbar extends React.Component {
     }
 
     saveConnection() {
-		this.setState({
-            enableRun: true,
-            editConnection: false
-        });
-
         var connOpts = {
             host: this.state.host,
             port: this.state.port,
@@ -65,8 +60,20 @@ export class Toolbar extends React.Component {
             user: this.state.user,
             password: this.state.password,
         };
-        this.props.db.connect(connOpts);
-        console.log('Connected', connOpts);
+
+        this.props.db.connect(connOpts).then(obj => {
+            obj.done(); // success, release connection;
+            console.log('Connected', connOpts);
+            this.setState({
+                enableRun: true,
+                editConnection: false,
+                errorMsg: null
+            });
+        }).catch(error => {
+            this.setState({
+                errorMsg: error.message
+            });
+        });
     }
 
     hostChanged(event) {
@@ -90,6 +97,7 @@ export class Toolbar extends React.Component {
     }
 
 	render() {
+        var errorClass = this.state.errorMsg ? 'modal-error' : '';
         var runButtonClassName = "toolbar-button ";
         if (this.state.enableRun === true) {
             runButtonClassName += "toolbar-button-primary";
@@ -135,6 +143,7 @@ export class Toolbar extends React.Component {
                     <input type="text" placeholder="database name" value={this.state.database} onChange={this.dbChanged} />
                     <label className="config-label">db</label>
                 </div>
+                <div className={errorClass}>{this.state.errorMsg}</div>
                 <button className="modal-confirm" onClick={this.saveConnection}>Save Connection</button>
               </section>
 			</Modal>

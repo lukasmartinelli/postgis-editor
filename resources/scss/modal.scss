@@ -54,3 +54,11 @@ $modal-bg-color: #282c34;
     margin-bottom: 10px;
     background-color: #73c990;
 }
+
+.modal-error {
+    margin: 10px;
+    margin-bottom: 20px;
+    border: 1px solid darken(#823C3C, 15%);
+    background-color: #823C3C;
+    padding: 5px;
+}
