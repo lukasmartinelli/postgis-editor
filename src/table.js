@@ -28,6 +28,7 @@ export class GeoJSONTable extends React.Component {
             features: result.geojson.features,
             columns: result.fields
                 .filter(f => !isGeometry(f.name))
+                .slice(0, 6)
                 .map(field => {
                     return { key: field.name, name: field.name };
                 })
