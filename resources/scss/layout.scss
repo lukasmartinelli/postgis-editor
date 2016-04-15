@@ -1,32 +1,30 @@
 .app {
     padding: 0;
+
+    position: fixed;
+    top: 0;
+    bottom: 0;
+	width: 100%;
+}
+
+.layout-main {
+    height: 40%;
 	margin-left: 80px;
 	position: relative;
 }
 
-.map-container {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-	width: 60%;
+.layout-editor {
 }
 
-.map-container > div{
-	height: 100%;
+.layout-map {
+    height: 60%;
+
+    & > div {
+	    height: 100%;
+    }
 }
 
-.editor-container {
-	background: #282c34;
-    position: fixed;
-    top: 0;
-    bottom: 0;
-
-	margin-left: 60%;
-	width: 40%;
-
-}
-
-.toolbar-container {
+.layout-toolbar {
     position: absolute;
     top: 0;
     bottom: 0;

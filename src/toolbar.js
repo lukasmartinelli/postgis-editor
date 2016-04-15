@@ -114,7 +114,7 @@ export class Toolbar extends React.Component {
             runButtonClassName += "toolbar-button-primary";
         }
 
-		return <div className="toolbar-container">
+		return <div>
 			<button onClick={this.runQuery} className={runButtonClassName}>
 				<i className="fa fa-play"></i>
 				<span>Run</span>
@@ -158,7 +158,6 @@ export class Toolbar extends React.Component {
                 <button className="modal-confirm" onClick={this.saveConnection}>Save Connection</button>
               </section>
 			</Modal>
-
 		</div>;
 	}
 }

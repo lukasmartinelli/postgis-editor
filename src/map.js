@@ -37,9 +37,7 @@ export class Map extends React.Component {
     }
 
 	render() {
-		return <div className="map-container">
-			<div id="map"></div>
-		</div>;
+		return <div id="map"></div>;
 	}
 
     displayPopup(e) {

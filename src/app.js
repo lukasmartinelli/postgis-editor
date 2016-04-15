@@ -37,13 +37,21 @@ class App extends React.Component {
 
 	render() {
 		return <div className="app">
-			<Toolbar db={this.db} />
-			<Map />
-			<Editor db={this.db} />
+            <div className="layout-main">
+                <div className="layout-toolbar">
+                    <Toolbar db={this.db} />
+                </div>
+		        <div className="layout-editor">
+                    <Editor db={this.db} />
+                </div>
+            </div>
+            <div className="layout-map">
+                <Map />
+            </div>
 			<Modal
 			  isOpen={this.state.showErrorModal}
-			  className="dark-modal"
-			  overlayClassName="dark-overlay"
+			  className="modal"
+			  overlayClassName="modal-overlay"
 			>
 			  <p>{this.state.errorMessage}</p>
               <button onClick={this.closeErrorModal}>Close Modal...</button>

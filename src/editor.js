@@ -63,8 +63,6 @@ export class Editor extends React.Component {
             viewportMargin: Infinity
 		};
 
-		return <div className="editor-container">
-			<Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />
-		</div>;
+		return <Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />;
 	}
 }
