@@ -48,7 +48,7 @@ export class GeoJSONTable extends React.Component {
     }
 
 	render() {
-		return <DataGrid
+		var grid = <DataGrid
 			rowKey='_idx'
 			columns={this.state.columns}
 			rowGetter={this.rowGetter}
@@ -57,5 +57,7 @@ export class GeoJSONTable extends React.Component {
 			enableCellSelect={true}
 			enableRowSelect='single'
 			minHeight={500} />;
+
+		return this.state.features.length > 0 ? grid : null;
 	}
 }
