@@ -5,7 +5,7 @@ var pgp = require('pg-promise')();
 export class Database {
 
     runQuery(subquery, cb) {
-        var transformQuery = "select ST_AsGeoJSON(ST_Transform(geom, 4326)) AS geometry, t.* from (" + subquery + ") as t";
+        var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
 
         //TODO: Use promises instead of callback
         //TODO: Deal with connection not set yet
@@ -13,7 +13,7 @@ export class Database {
             dbgeo.parse({
                 "data": result.rows,
                 "outputFormat": "geojson",
-                "geometryColumn": "geometry",
+                "geometryColumn": "geom",
                 "geometryType": "geojson"
             }, (err, geojson) => {
 		        window.events.publish('query.success', `Display ${result.rowCount} rows`);

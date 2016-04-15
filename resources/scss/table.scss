@@ -1,3 +1,7 @@
+$table-border-color: #222;
+$table-bg-color: #494949;
+$table-bg-header-color: #222;
+
 table {
     border-collapse: collapse;
     width: 90%;
@@ -22,4 +26,52 @@ tr:hover {
 }
 
 .results-table {
+}
+
+.react-grid-Row:hover .react-grid-Cell {
+  background-color: $table-bg-color;
+}
+
+.react-grid-Header {
+  background-color: $table-bg-header-color;
+}
+
+.react-grid-HeaderCell, .react-grid-Cell {
+  padding: 8px;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.react-grid-HeaderCell__value, .react-grid-Cell__value {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.react-grid-Container {
+	/* Turn on custom 8px wide scrollbar */
+	::-webkit-scrollbar {
+	  width: 8px; /* 1px wider than Lion. */
+	  /* This is more usable for users trying to click it. */
+	  background-color: rgba(0,0,0,0);
+	  -webkit-border-radius: 100px;
+	}
+	/* hover effect for both scrollbar area, and scrollbar 'thumb' */
+	::-webkit-scrollbar:hover {
+	  background-color: rgba(0, 0, 0, 0.09);
+	}
+
+	/* The scrollbar 'thumb' ...that marque oval shape in a scrollbar */
+	::-webkit-scrollbar-thumb:vertical {
+	  /* This is the EXACT color of Mac OS scrollbars. 
+		 Yes, I pulled out digital color meter */
+	  background: rgba(0,0,0,0.5);
+	  -webkit-border-radius: 100px;
+	}
+	::-webkit-scrollbar-thumb:vertical:active {
+	  background: rgba(0,0,0,0.61); /* Some darker color when you click it */
+	  -webkit-border-radius: 100px;
+	}
 }

@@ -13,14 +13,22 @@
 }
 
 .workspace-logs, .workspace-error {
-    width: 100%;
     background-color: #222;
     padding: 1.5 * $pad;
 }
 
-.workspace-logs {
+.workspace-bottom {
     position: absolute;
     bottom: 0;
+    width: 100%;
+}
+
+.workspace-table {
+    width: 100%;
+}
+
+.workspace-logs {
+    padding: 8px;
 }
 
 .workspace-error {

@@ -7,8 +7,7 @@ import Configstore from 'configstore';
 import pkg from '../package.json';
 
 const conf = new Configstore(pkg.name);
-
-var testCodeSample = `
+const testCodeSample = `
 SELECT
   osm_id_geometry(osm_id, geometry) as osm_id,
   geometry,
@@ -56,7 +55,7 @@ export class Editor extends React.Component {
     }
 
 	render() {
-		var codeMirrorOptions = {
+		const codeMirrorOptions = {
             lineNumbers: true,
             mode: 'text/x-plsql',
             theme: 'dracula',

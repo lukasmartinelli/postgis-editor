@@ -1,6 +1,7 @@
 import {Editor} from './editor.js';
 import {Toolbar} from './toolbar.js';
 import {Database} from './database.js';
+import {GeoJSONTable} from './table.js';
 import React from 'react';
 
 
@@ -56,8 +57,13 @@ export class Workspace extends React.Component {
 		    <div className="workspace-editor">
                 <Editor db={this.db} />
             </div>
-		    <div className="workspace-logs">
-                {this.state.message}
+		    <div className="workspace-bottom">
+                <div className="workspace-table">
+                    <GeoJSONTable />
+                </div>
+                <div className="workspace-logs">
+                    {this.state.message}
+                </div>
             </div>
         </div>;
 	}

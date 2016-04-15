@@ -27,13 +27,13 @@ export class Map extends React.Component {
 	}
 
     componentWillUnmount() {
-        //TODO: Cleanup Mapbox event handlers
+        // As map DOM object is destroyed the Mapbox event handlers will be removed as well
 		window.events.remove('displayData', displayData);
     }
 
     displayData(result) {
-        console.log(`Display ${result.rowCount} geometries`)
         this.recreateDebugLayers("debug_layer", "debug_source", result.geojson);
+        //TODO: Fly to location of points
     }
 
 	render() {

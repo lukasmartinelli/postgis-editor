@@ -24,11 +24,9 @@ export class GeoJSONTable extends React.Component {
     }
 
     populateTable(result) {
-        //TODO: Find a way to exclude all geometries
         this.setState({
             features: result.geojson.features,
             columns: result.fields
-                //TODO: Is there a nice way in JS to negate return value like Haskell not
                 .filter(f => !isGeometry(f.name))
                 .map(field => {
                     return { key: field.name, name: field.name };
