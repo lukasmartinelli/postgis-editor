@@ -1,0 +1,23 @@
+.toolbar-button {
+    display: block;
+    width: 60px;
+    margin-bottom: 10px;
+}
+
+.toolbar-button:hover {
+	color: white;
+    background: rgba(255,255,255,.1);
+}
+
+.toolbar-button-primary {
+    color: white;
+    background: #73c990;
+}
+
+.toolbar-button > i, .toolbar-button > span {
+	display: block;
+}
+
+.toolbar-button > i {
+	margin-bottom: 4px;
+}

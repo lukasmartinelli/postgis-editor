@@ -1,0 +1,23 @@
+.mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
+    border-bottom-color: #282c34;
+}
+
+.mapboxgl-popup-content {
+	background: #282c34;
+    max-width: 600px;
+    overflow: hidden;
+}
+
+.mapboxgl-ctrl > button {
+}
+
+
+.debug-props .debug-prop-key {
+    font-size: 12px;
+    padding-right: 20px;
+}
+
+.debug-props .debug-prop-value {
+    font-size: 12px;
+    opacity: .6;
+}

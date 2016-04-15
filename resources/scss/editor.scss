@@ -1,0 +1,15 @@
+.CodeMirror {
+    font: 12px/20px normal Menlo, Droidsansmono, Bitstream Vera Sans Mono, Monaco, Consolas, monospace;
+    height: auto;
+}
+
+.swatch {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    display: inline-block;
+    text-indent: -1000px;
+    overflow: hidden;
+    background: #000;
+}
+

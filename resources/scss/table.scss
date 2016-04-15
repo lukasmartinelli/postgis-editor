@@ -1,0 +1,25 @@
+table {
+    border-collapse: collapse;
+    width: 90%;
+}
+
+td, th {
+  padding: 0.5rem;
+  text-align: left;
+}
+
+td.result-location {
+  text-align: center;
+}
+
+tr {
+    border: 1px solid #181a1f;
+}
+
+tr:hover {
+    background-color: rgb(33, 37, 43);
+    cursor: pointer;
+}
+
+.results-table {
+}

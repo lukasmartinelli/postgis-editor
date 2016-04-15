@@ -1,0 +1,40 @@
+.app {
+    padding: 0;
+	margin-left: 80px;
+	position: relative;
+}
+
+.map-container {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+	width: 60%;
+}
+
+.map-container > div{
+	height: 100%;
+}
+
+.editor-container {
+	background: #282c34;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+
+	margin-left: 60%;
+	width: 40%;
+
+}
+
+.toolbar-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+	left: -80px;
+	width: 80px;
+	padding: 10px;
+}
+
+.results-container {
+    overflow: auto;
+}
