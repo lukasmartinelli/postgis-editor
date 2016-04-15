@@ -71,3 +71,12 @@ tr:hover {
 	  -webkit-border-radius: 100px;
 	}
 }
+	
+.react-grid-checkbox-label:before {
+  	font: 14px/1 FontAwesome;
+	color: #fff;
+	content: "\f041";
+}
+.react-grid-checkbox {
+	visibility: hidden;
+}

@@ -2,12 +2,15 @@ import * as _ from 'lodash';
 import randomColor from 'randomcolor';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import turf from 'turf';
 import {isGeometry} from './database.js';
 
 export class Map extends React.Component {
     constructor() {
 		super();
 		this.displayData = this.displayData.bind(this);
+		this.displayPopup = this.displayPopup.bind(this);
+		this.displayFeaturePopup = this.displayFeaturePopup.bind(this);
         this.layers = [];
     }
 
@@ -23,12 +26,14 @@ export class Map extends React.Component {
         this.map.addControl(new mapboxgl.Navigation({ position: 'top-left' }));
 
 		window.events.subscribe('displayData', this.displayData);
+		window.events.subscribe('data.detail', this.displayFeaturePopup);
         this.map.on('click', (e) => this.displayPopup(e));
 	}
 
     componentWillUnmount() {
         // As map DOM object is destroyed the Mapbox event handlers will be removed as well
-		window.events.remove('displayData', displayData);
+		window.events.remove('displayData', this.displayData);
+		window.events.remove('data.detail', this.displayFeaturePopup);
     }
 
     displayData(result) {
@@ -38,6 +43,16 @@ export class Map extends React.Component {
 
 	render() {
 		return <div id="map"></div>;
+	}
+
+	displayFeaturePopup(feature) {
+		var labelCoords = turf.pointOnSurface(feature.geometry).geometry.coordinates;
+        var popup = new mapboxgl.Popup()
+            .setLngLat(mapboxgl.LngLat.convert(labelCoords))
+            .setHTML(renderDebugPopup(feature.properties))
+            .addTo(this.map);
+
+		this.map.flyTo({center: labelCoords, zoom: 13});
 	}
 
     displayPopup(e) {

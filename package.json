@@ -28,15 +28,18 @@
   "dependencies": {
     "configstore": "^2.0.0",
     "dbgeo": "^0.1.0",
+    "install": "^0.6.1",
     "jquery": "^2.1.4",
     "lodash": "^4.9.0",
     "mediator-js": "^0.9.9",
+    "npm": "^3.8.6",
     "pg-promise": "^3.7.0",
     "randomcolor": "^0.4.4",
     "react": "^15.0.1",
     "react-codemirror": "^0.2.6",
     "react-data-grid": "^0.14.22",
     "react-dom": "^15.0.1",
-    "react-modal": "^1.0.0"
+    "react-modal": "^1.0.0",
+    "turf": "^2.0.2"
   }
 }
