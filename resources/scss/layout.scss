@@ -1,36 +1,27 @@
 .app {
     padding: 0;
+}
 
+@mixin full-height {
     position: fixed;
     top: 0;
     bottom: 0;
-	width: 100%;
+	height: 100%;
 }
 
-.layout-main {
-    height: 40%;
-	margin-left: 80px;
-	position: relative;
+.layout-left {
+    width: 40%;
+    @include full-height;
 }
 
-.layout-editor {
-}
-
-.layout-map {
-    height: 60%;
+.layout-right {
+    @include full-height;
+    width: 60%;
+    margin-left: 40%;
 
     & > div {
 	    height: 100%;
     }
-}
-
-.layout-toolbar {
-    position: absolute;
-    top: 0;
-    bottom: 0;
-	left: -80px;
-	width: 80px;
-	padding: 10px;
 }
 
 .results-container {

@@ -2,6 +2,7 @@ import {Map} from './map.js';
 import {Editor} from './editor.js';
 import {Toolbar} from './toolbar.js';
 import {Database} from './database.js';
+import {Workspace} from './workspace.js';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {Mediator} from 'mediator-js';
@@ -11,7 +12,6 @@ import Codemirror from 'react-codemirror';
 class App extends React.Component {
     constructor() {
         super();
-        this.db = new Database();
         this.closeErrorModal = this.closeErrorModal.bind(this);
         this.state = {
             errorMessage: '',
@@ -37,15 +37,10 @@ class App extends React.Component {
 
 	render() {
 		return <div className="app">
-            <div className="layout-main">
-                <div className="layout-toolbar">
-                    <Toolbar db={this.db} />
-                </div>
-		        <div className="layout-editor">
-                    <Editor db={this.db} />
-                </div>
+            <div className="layout-left">
+                <Workspace />
             </div>
-            <div className="layout-map">
+            <div className="layout-right">
                 <Map />
             </div>
 			<Modal

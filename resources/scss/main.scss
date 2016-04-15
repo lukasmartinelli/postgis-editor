@@ -1,11 +1,23 @@
+$bg-color: #313131;
+
+@mixin noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
 body {
     font-family: 'Open Sans', sans-serif;
     font-size: 12px;
     line-height: 20px;
     color: white;
-    background-color: #282c34;
+    background-color: $bg-color;
     -webkit-appearance: none;
     -webkit-font-smoothing: antialiased;
+    @include noselect;
 }
 
 @import "fonts";
@@ -13,6 +25,7 @@ body {
 @import "forms";
 @import "button";
 @import "modal";
+@import "workspace";
 @import "toolbar";
 @import "map";
 @import "editor";

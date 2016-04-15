@@ -114,7 +114,7 @@ export class Toolbar extends React.Component {
             runButtonClassName += "toolbar-button-primary";
         }
 
-		return <div>
+		return <div className="toolbar">
 			<button onClick={this.runQuery} className={runButtonClassName}>
 				<i className="fa fa-play"></i>
 				<span>Run</span>

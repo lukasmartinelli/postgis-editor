@@ -1,12 +1,20 @@
+.toolbar {
+    padding: 10px;
+}
+
 .toolbar-button {
-    display: block;
+    display: inline-block;
     width: 60px;
     margin-bottom: 10px;
+    margin: 5px;
+
+    background-color: #494949;
+    //background-color: lighten($bg-color, 5%);
 }
 
 .toolbar-button:hover {
 	color: white;
-    background: rgba(255,255,255,.1);
+    background-color: $bg-color;
 }
 
 .toolbar-button-primary {
