@@ -1,10 +1,12 @@
 import dbgeo from "dbgeo";
+import {parser,lexer} from 'sql-parser';
 
 var pgp = require('pg-promise')();
 
 export class Database {
 
     runQuery(subquery, cb) {
+		var ast = parser.parse(lexer.tokenize(subquery));
         var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
 
         //TODO: Use promises instead of callback
