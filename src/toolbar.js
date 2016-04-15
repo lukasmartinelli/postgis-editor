@@ -109,9 +109,12 @@ export class Toolbar extends React.Component {
 
 	render() {
         var errorClass = this.state.errorMsg ? 'modal-error' : '';
+        var connectButtonClassName = "toolbar-button ";
         var runButtonClassName = "toolbar-button ";
         if (this.state.enableRun === true) {
             runButtonClassName += "toolbar-button-primary";
+        } else {
+            connectButtonClassName += "toolbar-button-primary";
         }
 
 		return <div className="toolbar">
@@ -119,7 +122,7 @@ export class Toolbar extends React.Component {
 				<i className="fa fa-play"></i>
 				<span>Run</span>
 			</button>
-			<button onClick={this.showEditConnectionModal} className="toolbar-button">
+			<button onClick={this.showEditConnectionModal} className={connectButtonClassName}>
 				<i className="toolbar-icon fa fa-database"></i>
 				<span>Connect</span>
 			</button>
