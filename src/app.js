@@ -13,20 +13,28 @@ class App extends React.Component {
     constructor() {
         super();
         this.closeErrorModal = this.closeErrorModal.bind(this);
+        this.displayError = this.displayError.bind(this);
         this.state = {
             errorMessage: '',
             showError: false
         };
     }
 
+    displayError(message) {
+        this.setState({
+            errorMessage: message,
+            showErrorModal: true
+        });
+    }
+
     componentDidMount() {
-        var self = this;
-        window.onerror = function(message, source, lineno, colno, error) {
-		    self.setState({
-                errorMessage: message,
-                showErrorModal: true
-            });
-        }
+        window.onerror +=  this.displayError;
+		window.events.subscribe('error', this.displayError);
+    }
+
+    componentWillUnmount() {
+        window.onerror -=  this.displayError;
+		window.events.remove('error', this.displayError);
     }
 
     closeErrorModal() {

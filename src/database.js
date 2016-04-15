@@ -25,7 +25,7 @@ export class Database {
                 });
             });
         }).catch((error) => {
-            console.log(error);
+		    window.events.publish('error', error.message);
         });
     }
 
