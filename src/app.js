@@ -10,39 +10,6 @@ import Modal from 'react-modal';
 import Codemirror from 'react-codemirror';
 
 class App extends React.Component {
-    constructor() {
-        super();
-        this.closeErrorModal = this.closeErrorModal.bind(this);
-        this.displayError = this.displayError.bind(this);
-        this.state = {
-            errorMessage: '',
-            showError: false
-        };
-    }
-
-    displayError(message) {
-        this.setState({
-            errorMessage: message,
-            showErrorModal: true
-        });
-    }
-
-    componentDidMount() {
-        window.onerror +=  this.displayError;
-		window.events.subscribe('error', this.displayError);
-    }
-
-    componentWillUnmount() {
-        window.onerror -=  this.displayError;
-		window.events.remove('error', this.displayError);
-    }
-
-    closeErrorModal() {
-        this.setState({
-            showErrorModal: false
-        });
-    }
-
 	render() {
 		return <div className="app">
             <div className="layout-left">
@@ -51,14 +18,6 @@ class App extends React.Component {
             <div className="layout-right">
                 <Map />
             </div>
-			<Modal
-			  isOpen={this.state.showErrorModal}
-			  className="modal"
-			  overlayClassName="modal-overlay"
-			>
-			  <p>{this.state.errorMessage}</p>
-              <button onClick={this.closeErrorModal}>Close Modal...</button>
-			</Modal>
 		</div>;
 	}
 }

@@ -1,11 +1,28 @@
 .workspace {
+    position: relative;
+    height: 100%;
 }
 
 .workspace-header {
     //background-color: darken($bg-color, 5%);
     background-color: #404040;
-    margin-bottom: 10px;
 }
 
 .workspace-editor {
+    margin-top: 10px;
+}
+
+.workspace-logs, .workspace-error {
+    width: 100%;
+    background-color: #222;
+    padding: 1.5 * $pad;
+}
+
+.workspace-logs {
+    position: absolute;
+    bottom: 0;
+}
+
+.workspace-error {
+    background-color: $error-color;
 }

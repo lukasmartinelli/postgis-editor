@@ -1,4 +1,6 @@
 $bg-color: #313131;
+$error-color: #823C3C;
+$pad: 10px;
 
 @mixin noselect {
   -webkit-touch-callout: none;
@@ -7,6 +9,15 @@ $bg-color: #313131;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
+}
+
+/* apply a natural box layout model to all elements, but allowing components to change */
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
 }
 
 body {

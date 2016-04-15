@@ -16,6 +16,7 @@ export class Database {
                 "geometryColumn": "geometry",
                 "geometryType": "geojson"
             }, (err, geojson) => {
+		        window.events.publish('query.success', `Display ${result.rowCount} rows`);
                 //TODO: This is solved some pattern somehow
                 cb(err, {
                     geojson: geojson,
@@ -25,7 +26,7 @@ export class Database {
                 });
             });
         }).catch((error) => {
-		    window.events.publish('error', error.message);
+		    window.events.publish('query.error', error.message);
         });
     }
 
