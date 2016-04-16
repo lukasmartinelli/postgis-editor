@@ -3,14 +3,22 @@ import {parser,lexer} from 'sql-parser';
 
 var pgp = require('pg-promise')();
 
-export class Database {
+const errorHandler = error => window.events.publish('query.error', error.message);
 
+export class Database {
     runQuery(subquery, cb) {
-		var ast = parser.parse(lexer.tokenize(subquery));
-        var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
+        // We can give much better error messages if we try to parse it
+        // before we add our custom SQL transforms
+        try {
+            var ast = parser.parse(lexer.tokenize(subquery));
+        } catch(error) {
+            errorHandler(error);
+            return;
+        }
 
         //TODO: Use promises instead of callback
         //TODO: Deal with connection not set yet
+        var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
         this.db.result(transformQuery, true).then((result) => {
             dbgeo.parse({
                 "data": result.rows,
@@ -27,9 +35,7 @@ export class Database {
                     command: result.command,
                 });
             });
-        }).catch((error) => {
-		    window.events.publish('query.error', error.message);
-        });
+        }).catch(errorHandler);
     }
 
     connect(connectionOptions) {

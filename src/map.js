@@ -47,9 +47,15 @@ export class Map extends React.Component {
 
 	displayFeaturePopup(feature) {
 		var labelCoords = turf.pointOnSurface(feature.geometry).geometry.coordinates;
-        var popup = new mapboxgl.Popup()
+
+        // Clear all previous map popups
+        if(this.popup) {
+            this.popup.remove();
+        }
+
+        this.popup = new mapboxgl.Popup()
             .setLngLat(mapboxgl.LngLat.convert(labelCoords))
-            .setHTML(renderDebugPopup(feature.properties))
+            .setHTML(renderFeaturePropertyTable(feature))
             .addTo(this.map);
 
 		this.map.flyTo({center: labelCoords, zoom: 13});
@@ -70,7 +76,7 @@ export class Map extends React.Component {
         // based on the feature found.
         var popup = new mapboxgl.Popup()
             .setLngLat(e.lngLat)
-            .setHTML(renderDebugPopup(feature.properties))
+            .setHTML(renderFeaturePropertyTable(feature))
             .addTo(this.map);
     }
 
@@ -150,22 +156,30 @@ function createPolygonLayer(id, source, color) {
     };
 }
 
-function properties(object) {
-    let arr = [];
-	for (var key in object) {
-        arr.push({ key, value: object[key] });
+class FeaturePropertyTable extends React.Component {
+    items(object) {
+        let arr = [];
+        for (var key in object) {
+            arr.push({ key, value: object[key] });
+        }
+        return arr;
     }
-    return arr;
+
+	render() {
+        const rows = this.items(this.props.feature.properties)
+            .filter(i => !isGeometry(i.key))
+            .map(i => {
+                return <tr key={i.key} class="debug-prop">
+                    <td class="debug-prop-key">{i.key}</td>
+                    <td class="debug-prop-value">{i.value}</td>
+                </tr>; 
+            });
+		return <table class="debug-props"><tbody>{rows}</tbody></table>;;
+	}
 }
 
-function renderDebugPopup(props) {
-    var rows = properties(props).filter(p => !isGeometry(p.key)).map(prop => {
-        return `
-		    <tr class="debug-prop">
-                <td class="debug-prop-key">${prop.key}</td>
-                <td class="debug-prop-value">${prop.value}</td>
-            </tr>
-        `;
-    }).join('');
-    return `<table class="debug-props">${rows}</table>`
+function renderFeaturePropertyTable(feature) {
+    var mountNode = document.createElement('div');
+    ReactDOM.render(<FeaturePropertyTable feature={feature} />, mountNode);
+    return mountNode;
 }

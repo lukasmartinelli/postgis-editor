@@ -3,7 +3,7 @@
 }
 
 .mapboxgl-popup-content {
-	background: #282c34;
+	background: $bg-color;
     max-width: 600px;
     overflow: hidden;
 }
@@ -15,9 +15,11 @@
 .debug-props .debug-prop-key {
     font-size: 12px;
     padding-right: 20px;
+    @include selectable;
 }
 
 .debug-props .debug-prop-value {
     font-size: 12px;
     opacity: .6;
+    @include selectable;
 }

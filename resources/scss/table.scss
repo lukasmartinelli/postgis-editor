@@ -3,56 +3,22 @@ $table-hover-color: #494949;
 $table-bg-color: #313131;
 $table-bg-header-color: #222;
 
-table {
-    border-collapse: collapse;
-    width: 90%;
-}
-
-td, th {
-  padding: 0.5rem;
-  text-align: left;
-}
-
-td.result-location {
-  text-align: center;
-}
-
-tr {
-    border: 1px solid #181a1f;
-}
-
-tr:hover {
-    background-color: rgb(33, 37, 43);
-    cursor: pointer;
-}
-
-.results-table {
-}
-
-.react-grid-Row:hover .react-grid-Cell {
-  background-color: $table-hover-color;
-}
-
-.react-grid-HeaderCell, .react-grid-Cell {
-  padding: 8px;
+.FlexTable__headerRow {
   border-bottom: 1px solid $table-border-color;
-  background-color: $table-bg-color;
-}
-
-.react-grid-Header, .react-grid-HeaderCell {
   background-color: $table-bg-header-color;
 }
 
-.react-grid-HeaderCell__value, .react-grid-Cell__value {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  position: relative;
-  top: 50%;
-  transform: translateY(-50%);
+.Grid__cell:hover {
+  background-color: $table-hover-color;
+  cursor: pointer;
 }
 
-.react-grid-Container {
+.Grid_cell {
+  background-color: $table-bg-color;
+  border-bottom: 1px solid $table-border-color;
+}
+
+.FlexTable {
 	::-webkit-scrollbar {
 	  width: 8px;
 	  background-color: rgba(0,0,0,0);
@@ -70,13 +36,4 @@ tr:hover {
 	  background: rgba(0,0,0,0.61);
 	  -webkit-border-radius: 100px;
 	}
-}
-	
-.react-grid-checkbox-label:before {
-  	font: 14px/1 FontAwesome;
-	color: #fff;
-	content: "\f041";
-}
-.react-grid-checkbox {
-	visibility: hidden;
 }

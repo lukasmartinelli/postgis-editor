@@ -57,6 +57,10 @@ export class Toolbar extends React.Component {
     }
 
     runQuery() {
+        // Users should connect using the special connect button first
+        // to verify the connection but once people open the app the second time
+        // they just want to rerun the previous query with the same connection
+        this.saveConnection();
 		window.events.publish('runQuery', {});
     }
 
