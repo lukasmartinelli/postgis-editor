@@ -1,10 +1,10 @@
 # PostGIS Query Editor
 
-A very accessible PostGIS query editor and visualizer.
-Getting started with PostGIS is harder than it should be. We spent much time in **psql** and wished to visualize
+A very accessible **PostGIS query editor** and visualizer.
+Getting started with [PostGIS](http://postgis.net/) is harder than it should be. We spent much time in **psql** and wished to visualize
 our queries quickly without big complicated tools.
 
-Features
+**Features:**
 - Just type your query - we try to figure out the geometry/projection
 - Beautiful MapboxGL based visualization
 - Click on any feature for full information
@@ -27,4 +27,10 @@ Run Electron app.
 
 ```bash
 npm start
+```
+
+Create releases.
+
+```bash
+npm run package
 ```
