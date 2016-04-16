@@ -24,7 +24,6 @@ export class Database {
                     "geometryColumn": geomField.name,
                     "geometryType": "geojson"
                 }, (err, geojson) => {
-                    console.log(result);
                     window.events.publish('query.success', `${result.rowCount} rows in ${result.duration}ms`);
                     //TODO: This is solved some pattern somehow
                     cb(err, {
@@ -41,6 +40,7 @@ export class Database {
     transformQuery(query) {
         var limitQuery = `select * from (${query}) as t limit 1`;
         return this.db.result(limitQuery, true).then(result => {
+            console.log(result);
             const firstGeomField = result.fields.filter(isGeometryField).shift();
             const selectClause = result.fields.map(field => {
                 if(isGeometryField(field)) {

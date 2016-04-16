@@ -1,5 +1,17 @@
 .mapboxgl-popup-anchor-top .mapboxgl-popup-tip {
-    border-bottom-color: #282c34;
+    border-bottom-color: $bg-color;
+}
+
+.mapboxgl-popup-anchor-left .mapboxgl-popup-tip {
+    border-right-color: $bg-color;
+}
+
+.mapboxgl-popup-anchor-right .mapboxgl-popup-tip {
+    border-left-color: $bg-color;
+}
+
+.mapboxgl-popup-anchor-bottom .mapboxgl-popup-tip {
+    border-top-color: $bg-color;
 }
 
 .mapboxgl-popup-content {
