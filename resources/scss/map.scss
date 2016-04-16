@@ -8,6 +8,12 @@
     overflow: hidden;
 }
 
+.mapboxgl-popup-close-button {
+   padding: 0;
+   right: 5px;
+   font-size: 16px;
+}
+
 .mapboxgl-ctrl > button {
 }
 

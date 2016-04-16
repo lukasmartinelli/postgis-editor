@@ -169,17 +169,17 @@ class FeaturePropertyTable extends React.Component {
         const rows = this.items(this.props.feature.properties)
             .filter(i => !isGeometry(i.key))
             .map(i => {
-                return <tr key={i.key} class="debug-prop">
-                    <td class="debug-prop-key">{i.key}</td>
-                    <td class="debug-prop-value">{i.value}</td>
+                return <tr key={i.key} className="debug-prop">
+                    <td className="debug-prop-key">{i.key}</td>
+                    <td className="debug-prop-value">{i.value.toString()}</td>
                 </tr>; 
             });
-		return <table class="debug-props"><tbody>{rows}</tbody></table>;;
+		return <table className="debug-props"><tbody>{rows}</tbody></table>;;
 	}
 }
 
 function renderFeaturePropertyTable(feature) {
     var mountNode = document.createElement('div');
     ReactDOM.render(<FeaturePropertyTable feature={feature} />, mountNode);
-    return mountNode;
+    return mountNode.innerHTML;
 }
