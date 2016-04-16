@@ -10,7 +10,7 @@
     "build-es6": "babel src -d dist --source-maps inline",
     "watch-sass": "nodemon -e scss -x \"npm run build-sass\"",
     "build-sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css",
-    "package": "electron-packager ./ postgis-editor --out=./releases --platform=all --arch=x64 --icon=./postgis-editor.icns --overwrite "
+    "package": "electron-packager ./ postgis-editor --out=./releases --platform=all --arch=x64 --icon=./postgis-editor.icns --overwrite --asar --prune"
   },
   "babel": {
     "presets": [

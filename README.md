@@ -13,6 +13,12 @@ our queries quickly without big complicated tools.
 
 ![Demo video](demo.gif)
 
+## Install
+
+**The installation builds are still experimental**
+
+Download the app for your platform from the [releases page](https://github.com/lukasmartinelli/postgis-editor/releases/latest).
+
 ## Develop
 
 The PostGIS query editor is based on Electron using React and MapboxGL.
