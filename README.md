@@ -1,4 +1,4 @@
-# PostGIS Query Editor
+# PostGIS Query Editor [![Build Status](https://travis-ci.org/lukasmartinelli/postgis-editor.svg?branch=master)](https://travis-ci.org/lukasmartinelli/postgis-editor) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://tldrlegal.com/license/mit-license)
 
 A very accessible **PostGIS query editor** and visualizer.
 Getting started with [PostGIS](http://postgis.net/) is harder than it should be. We spent much time in **psql** and wished to visualize
