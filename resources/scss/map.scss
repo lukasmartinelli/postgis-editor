@@ -14,6 +14,19 @@
     border-top-color: $bg-color;
 }
 
+.mapboxgl-ctrl-group {
+    background: $bg-color;
+}
+
+.mapboxgl-ctrl-group > button {
+    background-color: rgb(86, 83, 83);
+    border-color: $bg-color;
+
+    &:hover {
+        background-color: lighten(rgb(86, 83, 83), 10%);
+    }
+}
+
 .mapboxgl-popup-content {
 	background: $bg-color;
     max-width: 600px;
