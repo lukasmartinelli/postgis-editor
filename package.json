@@ -6,11 +6,26 @@
   "scripts": {
     "start": "./node_modules/.bin/electron main.js",
     "build": "npm run es6 && npm run sass",
+    "lint": "eslint src",
     "watch-es6": "babel src -d dist --source-maps inline --watch",
     "build-es6": "babel src -d dist --source-maps inline",
     "watch-sass": "nodemon -e scss -x \"npm run build-sass\"",
     "build-sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css",
     "package": "electron-packager ./ postgis-editor --out=./releases --platform=all --arch=x64 --icon=./postgis-editor.icns --overwrite --asar --prune"
+  },
+  "eslintConfig": {
+    "env": {
+      "es6": true,
+      "browser": true,
+      "node": true
+    },
+    "parserOptions": {
+        "ecmaVersion": 6,
+        "sourceType": "module",
+        "ecmaFeatures": {
+            "jsx": true
+        }
+    }
   },
   "babel": {
     "presets": [
@@ -25,14 +40,13 @@
     "electron-packager": "^6.0.2",
     "electron-prebuilt": "^0.34.3",
     "electron-rebuild": "^1.0.2",
+    "eslint": "^2.8.0",
     "node-sass": "^3.4.2"
   },
   "dependencies": {
     "configstore": "^2.0.0",
     "dbgeo": "^0.1.0",
-    "fixed-data-table": "^0.6.0",
     "install": "^0.6.1",
-    "jquery": "^2.1.4",
     "lodash": "^4.9.0",
     "mediator-js": "^0.9.9",
     "npm": "^3.8.6",
