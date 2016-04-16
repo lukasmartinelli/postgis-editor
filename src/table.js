@@ -2,14 +2,24 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import DataGrid from 'react-data-grid';
 import {isGeometry} from './database.js';
+import JsonTable from 'react-json-table';
 import * as _ from 'lodash';
 
+// Even though huge tables are fun it does not make any sense
+// to query a million rows and scroll through all of them
+// therefore we make our life easy by limiting the displayed rows
+const maxRows = 1000;
+
+// Because we use a split window with the table on the left
+// we don't have space for unlimited columns better
+// limit the number since the user can click on a row
+// to get the full detail on the map interface itself
+const maxColumns = 6;
 
 export class GeoJSONTable extends React.Component {
     constructor(props) {
         super(props);
         this.populateTable = this.populateTable.bind(this);
-        this.rowGetter = this.rowGetter.bind(this);
         this.showRowDetail = this.showRowDetail.bind(this);
         this.state = {
             columns: [],
@@ -27,37 +37,31 @@ export class GeoJSONTable extends React.Component {
 
     populateTable(result) {
         this.setState({
-            features: result.geojson.features,
+            features: result.geojson.features.slice(0, maxRows).map(f => {
+				return _.extend({ _feature: f }, f.properties);
+			}),
             columns: result.fields
                 .filter(f => !isGeometry(f.name))
-                .slice(0, 6)
+                .slice(0, maxColumns)
                 .map(field => {
-                    return { key: field.name, name: field.name };
+                    return {
+						key: field.name,
+						label: field.name
+					};
                 })
         });
     }
 
-    showRowDetail(rows) {
-		var chosenRow = rows[0];
-		var feature = this.state.features[chosenRow._idx];
-		window.events.publish('data.detail', feature);
-    }
-
-    rowGetter(i) {
-        return _.extend({ "_idx": i }, this.state.features[i].properties);
+    showRowDetail(e, row) {
+		window.events.publish('data.detail', row._feature);
     }
 
 	render() {
-		var grid = <DataGrid
-			rowKey='_idx'
+		const table = <JsonTable
+			rows={this.state.features}
 			columns={this.state.columns}
-			rowGetter={this.rowGetter}
-			rowsCount={this.state.features.length}
-			onRowSelect={this.showRowDetail}
-			enableCellSelect={true}
-			enableRowSelect='single'
-			minHeight={500} />;
+			onClickRow={this.showRowDetail} />;
 
-		return this.state.features.length > 0 ? grid : null;
+		return this.state.features.length > 0 ? table : null;
 	}
 }

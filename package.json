@@ -39,6 +39,7 @@
     "react-codemirror": "^0.2.6",
     "react-data-grid": "^0.14.22",
     "react-dom": "^15.0.1",
+    "react-json-table": "0.0.3",
     "react-modal": "^1.0.0",
     "sql-parser": "^0.5.0",
     "turf": "^2.0.2"
