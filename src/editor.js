@@ -56,10 +56,12 @@ export class Editor extends React.Component {
 
 	render() {
 		const codeMirrorOptions = {
+            tabSize: 2,
             lineNumbers: true,
+            lineWrapping: true,
             mode: 'text/x-plsql',
             theme: 'dracula',
-            viewportMargin: Infinity
+            //viewportMargin: Infinity
 		};
 
 		return <Codemirror value={this.state.code} onChange={this.updateCode} options={codeMirrorOptions} />;

@@ -17,7 +17,6 @@ export class Database {
         }
 
         //TODO: Use promises instead of callback
-        //TODO: Deal with connection not set yet
         var transformQuery = "select ST_AsGeoJSON(ST_Transform(geometry, 4326)) AS geom, t.* from (" + subquery + ") as t";
         this.db.result(transformQuery, true).then((result) => {
             dbgeo.parse({
@@ -26,7 +25,8 @@ export class Database {
                 "geometryColumn": "geom",
                 "geometryType": "geojson"
             }, (err, geojson) => {
-		        window.events.publish('query.success', `Display ${result.rowCount} rows`);
+                console.log(result);
+		        window.events.publish('query.success', `${result.rowCount} rows in ${result.duration}ms`);
                 //TODO: This is solved some pattern somehow
                 cb(err, {
                     geojson: geojson,

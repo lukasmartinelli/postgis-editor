@@ -54,16 +54,14 @@ export class Workspace extends React.Component {
                 <Toolbar db={this.db} />
             </div>
             {workspaceError}
-		    <div className="workspace-editor">
+            <div className="workspace-editor">
                 <Editor db={this.db} />
             </div>
-		    <div className="workspace-bottom">
-                <div className="workspace-table">
-                    <GeoJSONTable />
-                </div>
-                <div className="workspace-logs">
-                    {this.state.message}
-                </div>
+            <div className="workspace-table">
+                <GeoJSONTable />
+            </div>
+            <div className="workspace-logs">
+                {this.state.message}
             </div>
         </div>;
 	}

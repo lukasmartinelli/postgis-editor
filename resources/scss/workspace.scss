@@ -1,10 +1,11 @@
 .workspace {
     position: relative;
     height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 .workspace-header {
-    //background-color: darken($bg-color, 5%);
     background-color: #404040;
 }
 
@@ -14,22 +15,13 @@
 
 .workspace-logs, .workspace-error {
     background-color: #222;
-    padding: 1.5 * $pad;
-}
-
-.workspace-bottom {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
+    padding: 0 8px;
+    line-height: 28px;
 }
 
 .workspace-table {
+    flex: 1;
     width: 100%;
-    height: 400px;
-}
-
-.workspace-logs {
-    padding: 8px;
 }
 
 .workspace-error {
