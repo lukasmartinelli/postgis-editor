@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import DataGrid from 'react-data-grid';
 import {isGeometry} from './database.js';
 import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
+import {displayValue} from './helpers.js';
 import * as _ from 'lodash';
 
 // Because we use a split window with the table on the left
@@ -13,6 +14,29 @@ import * as _ from 'lodash';
 // TODO: It is possible with the Grid component from react virtualized
 // to create a horizontally scrollable table.
 const maxColumns = 6;
+
+const dbType = {
+    bool: 21,
+    int: 23,
+    bigint: 20,
+    timestamp: 1114 
+};
+
+const calcWidthFromField = field => {
+    if (field.dataTypeID === dbType.bool) return 25;
+    if (field.dataTypeID === dbType.int) return 30;
+    if (field.dataTypeID === dbType.bigint) return 55;
+    if (field.dataTypeID === dbType.timestamp) return 120;
+    return 150;
+}
+
+const calcFlexGrowFromField = field => {
+    if (field.dataTypeID === dbType.bool) return 1;
+    if (field.dataTypeID === dbType.int) return 1;
+    if (field.dataTypeID === dbType.bigint) return 1;
+    if (field.dataTypeID === dbType.timestamp) return 2;
+    return 2;
+}
 
 export class GeoJSONTable extends React.Component {
     constructor(props) {
@@ -49,10 +73,9 @@ export class GeoJSONTable extends React.Component {
               key={field.name}
 			  label={field.name}
 			  dataKey={field.name}
-              width={100}
-		      flexGrow={1}
-		      flexShrink={1}
-			  cellDataGetter={(dataKey, rowData) => rowData.properties[dataKey]}
+              width={calcWidthFromField(field)}
+              flexGrow={calcFlexGrowFromField(field)}
+			  cellDataGetter={(dataKey, rowData) => displayValue(rowData.properties[dataKey])}
 			/>
 		);
 
@@ -62,8 +85,8 @@ export class GeoJSONTable extends React.Component {
 						<FlexTable
 							width={width}
 							height={height}
-							headerHeight={30}
-							rowHeight={30}
+							headerHeight={28}
+							rowHeight={28}
 							rowsCount={features.length}
 							rowGetter={index => features[index]}
 							onRowClick={showRowDetail}

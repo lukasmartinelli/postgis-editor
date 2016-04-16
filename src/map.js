@@ -4,6 +4,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import turf from 'turf';
 import {isGeometry} from './database.js';
+import {displayValue} from './helpers.js';
 
 export class Map extends React.Component {
     constructor() {
@@ -171,7 +172,7 @@ class FeaturePropertyTable extends React.Component {
             .map(i => {
                 return <tr key={i.key} className="debug-prop">
                     <td className="debug-prop-key">{i.key}</td>
-                    <td className="debug-prop-value">{i.value.toString()}</td>
+                    <td className="debug-prop-value">{displayValue(i.value)}</td>
                 </tr>; 
             });
 		return <table className="debug-props"><tbody>{rows}</tbody></table>;;
