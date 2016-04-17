@@ -18,13 +18,15 @@ export class Database {
 
         this.transformQuery(subquery).then(({query, geomField}) => {
             return this.db.result(query, true).then((result) => {
+                const parseStart = new Date().getTime();
                 dbgeo.parse({
                     "data": result.rows,
                     "outputFormat": "geojson",
                     "geometryColumn": geomField.name,
                     "geometryType": "geojson"
                 }, (err, geojson) => {
-                    window.events.publish('query.success', `${result.rowCount} rows in ${result.duration}ms`);
+                    const parseEnd = new Date().getTime();
+                    window.events.publish('query.success', `Queried ${result.rowCount} in ${result.duration}ms, parsed in ${parseEnd - parseStart}ms`);
                     //TODO: This is solved some pattern somehow
                     cb(err, {
                         geojson: geojson,
