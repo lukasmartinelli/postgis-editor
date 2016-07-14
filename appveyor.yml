@@ -11,7 +11,7 @@ cache:
 install:
   - ps: Install-Product node 5 x64
   - git reset --hard HEAD
-  - npm install npm -g
+  - npm install -g npm
   - npm prune
   - npm install
 
@@ -20,6 +20,7 @@ build_script:
   - npm --version
   - npm run build
   - npm prune --production
-  - ./node_modules/electron-packager/cli.js ./ postgis-editor --out=./releases --platform=win32 --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune
+  - npm install -g electron-packager@7.3.0
+  - electron-packager ./ postgis-editor --out=./releases --platform=win32 --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune
 
 test: off
