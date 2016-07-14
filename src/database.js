@@ -39,10 +39,11 @@ export class Database {
         }).catch(errorHandler);
     }
 
+    // Make a probe query requesting only one row to find the geometry field
+    // and then build the actual data query
     transformQuery(query) {
         var limitQuery = `select * from (${query}) as t limit 1`;
         return this.db.result(limitQuery, true).then(result => {
-            console.log(result);
             const firstGeomField = result.fields.filter(isGeometryField).shift();
             const selectClause = result.fields.map(field => {
                 if(isGeometryField(field)) {
