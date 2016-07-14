@@ -1,0 +1,25 @@
+version: '1.0.{build}'
+
+platform:
+  - x64
+
+cache:
+  - node_modules -> package.json
+  - app\node_modules -> package.json
+  - '%APPDATA%\npm-cache'
+  - '%USERPROFILE%\.electron'
+
+install:
+  - ps: Install-Product node 5 x64
+  - git reset --hard HEAD
+  - npm install npm -g
+  - npm prune
+  - npm install
+
+build_script:
+  - node --version
+  - npm --version
+  - npm test
+  - npm run dist
+
+test: off

@@ -20,7 +20,7 @@ export class Map extends React.Component {
             container: 'map',
             style: 'mapbox://styles/morgenkaffee/cimsw88b8002l8sko6hhm2pr1',
             center: [5.9701, 46.1503],
-            zoom: 9,
+            zoom: 1,
             touchZoomRotate: true,
             attributionControl: false
 		});
