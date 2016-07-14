@@ -10,7 +10,7 @@
   },
   "scripts": {
     "start": "./node_modules/.bin/electron main.js",
-    "build": "npm run es6 && npm run sass",
+    "build": "npm run build-es6 && npm run build-sass",
     "lint": "eslint src",
     "watch-es6": "babel src -d dist --source-maps inline --watch",
     "build-es6": "babel src -d dist --source-maps inline",

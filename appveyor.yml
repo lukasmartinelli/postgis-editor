@@ -20,5 +20,6 @@ build_script:
   - npm --version
   - npm run build
   - npm prune --production
+  - ./node_modules/electron-packager/cli.js ./ postgis-editor --out=./releases --platform=win32 --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune
 
 test: off
