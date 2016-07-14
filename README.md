@@ -1,4 +1,4 @@
-# PostGIS Query Editor [![Build Status](https://travis-ci.org/lukasmartinelli/postgis-editor.svg?branch=master)](https://travis-ci.org/lukasmartinelli/postgis-editor) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://tldrlegal.com/license/mit-license)
+# PostGIS Query Editor [![Linux Build Status](https://travis-ci.org/lukasmartinelli/postgis-editor.svg?branch=master)](https://travis-ci.org/lukasmartinelli/postgis-editor) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://tldrlegal.com/license/mit-license) [![Windows Build status](https://ci.appveyor.com/api/projects/status/a90g1nkv2a792w98?svg=true)](https://ci.appveyor.com/project/lukasmartinelli/postgis-editor)
 
 A very accessible **PostGIS query editor** and visualizer.
 Getting started with [PostGIS](http://postgis.net/) is harder than it should be. We spent much time in **psql** and wished to visualize
@@ -10,14 +10,20 @@ our queries quickly without big complicated tools.
 - Click on any feature for full information
 - Table view to jump to important features
 - Display 100k objects with ease
+- Cross platform support for Windows, OSX and Linux
 
 ![Demo video](demo.gif)
 
 ## Install
 
-**The installation builds are still experimental**
-
 Download the app for your platform from the [releases page](https://github.com/lukasmartinelli/postgis-editor/releases/latest).
+
+- Download **postgis-editor.app** file for OSX
+- Download and extract ZIP and execute **postgis-editor.exe** for Windows
+- Download ZIP and execute **postgis-editor** for Linux
+
+If this project gains traction we can start building installers for Windows and create packages for different Linux distros. You can also clone the repo
+and run **postgis-editor** directly with npm.
 
 ## Develop
 
