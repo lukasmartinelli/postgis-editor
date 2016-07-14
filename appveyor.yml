@@ -21,4 +21,9 @@ build_script:
   - npm run build
   - npm run package-windows
 
+artifacts:
+  - path: releases/postgis-editor-win32-x64
+    name: postgis-editor-win32-x64
+    type: zip
+
 test: off
