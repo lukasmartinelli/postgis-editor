@@ -5,7 +5,6 @@ platform:
 
 cache:
   - node_modules -> package.json
-  - app\node_modules -> package.json
   - '%APPDATA%\npm-cache'
   - '%USERPROFILE%\.electron'
 
@@ -19,7 +18,7 @@ install:
 build_script:
   - node --version
   - npm --version
-  - npm test
-  - npm run dist
+  - npm run build
+  - npm prune --production
 
 test: off
