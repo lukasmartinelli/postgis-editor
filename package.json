@@ -16,7 +16,10 @@
     "build-es6": "babel src -d dist --source-maps inline",
     "watch-sass": "nodemon -e scss -x \"npm run build-sass\"",
     "build-sass": "node-sass --include-path scss resources/scss/main.scss resources/css/main.css",
-    "package": "electron-packager ./ postgis-editor --out=./releases --platform=all --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune"
+    "package-all": "electron-packager ./ postgis-editor --out=./releases --platform=all --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune",
+    "package-windows": "electron-packager ./ postgis-editor --out=./releases --platform=win32 --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune",
+    "package-osx": "electron-packager ./ postgis-editor --out=./releases --platform=darwin --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune",
+    "package-linux": "electron-packager ./ postgis-editor --out=./releases --platform=linux --arch=x64 --icon=./postgis-editor.build-icns --overwrite --asar --prune"
   },
   "eslintConfig": {
     "env": {
@@ -25,11 +28,11 @@
       "node": true
     },
     "parserOptions": {
-        "ecmaVersion": 6,
-        "sourceType": "module",
-        "ecmaFeatures": {
-            "jsx": true
-        }
+      "ecmaVersion": 6,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
     }
   },
   "babel": {
@@ -42,6 +45,7 @@
     "babel-cli": "^6.7.5",
     "babel-preset-es2015": "^6.6.0",
     "babel-preset-react": "^6.5.0",
+    "electron-packager": "^7.3.0",
     "electron-prebuilt": "^1.2.7",
     "electron-rebuild": "^1.0.2",
     "eslint": "^3.0.1",

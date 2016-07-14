@@ -38,5 +38,5 @@ npm start
 Create releases.
 
 ```bash
-npm run package
+npm run package-all
 ```
