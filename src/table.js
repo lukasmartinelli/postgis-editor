@@ -1,6 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import DataGrid from 'react-data-grid';
 import {isGeometry} from './database.js';
 import { AutoSizer, FlexTable, FlexColumn } from 'react-virtualized';
 import {displayValue} from './helpers.js';
@@ -67,7 +66,8 @@ export class GeoJSONTable extends React.Component {
 
 	render() {
 		const features = this.state.features;
-    	const showRowDetail = i => window.events.publish('data.detail', features[i]);
+        const propertyGetter = ({rowData, dataKey})=> displayValue(rowData.properties[dataKey]);
+        const showRowDetail = ({index}) => window.events.publish('data.detail', features[index]);
 		const columns = this.state.fields.map(field =>
 			<FlexColumn
               key={field.name}
@@ -75,7 +75,7 @@ export class GeoJSONTable extends React.Component {
 			  dataKey={field.name}
               width={calcWidthFromField(field)}
               flexGrow={calcFlexGrowFromField(field)}
-			  cellDataGetter={(dataKey, rowData) => displayValue(rowData.properties[dataKey])}
+			  cellDataGetter={propertyGetter}
 			/>
 		);
 
@@ -87,8 +87,8 @@ export class GeoJSONTable extends React.Component {
 							height={height}
 							headerHeight={28}
 							rowHeight={28}
-							rowsCount={features.length}
-							rowGetter={index => features[index]}
+							rowCount={features.length}
+							rowGetter={({index}) => features[index]}
 							onRowClick={showRowDetail}
 						  >
 							{columns}
