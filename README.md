@@ -18,9 +18,7 @@ our queries quickly without big complicated tools.
 
 [**Download the app for your platform from the releases page**](https://github.com/lukasmartinelli/postgis-editor/releases/latest).
 
-- Download and execute **postgis-editor.app** file for OSX
-- Download and extract ZIP and execute **postgis-editor.exe** for Windows
-- Download ZIP and execute **postgis-editor** for Linux
+Now unzip the release and either execute **postgis-editor.app** for OSX, **postgis-editor.exe** for Windows or **postgis-editor** for Linux.
 
 If this project gains traction we can start building installers for Windows and create packages for different Linux distros. You can also clone the repo
 and run **postgis-editor** directly with npm.
