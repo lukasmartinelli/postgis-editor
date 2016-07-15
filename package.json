@@ -1,6 +1,6 @@
 {
   "name": "postgis-editor",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A PostGIS SQL query editor focused on accessible spatial development.",
   "main": "main.js",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "url": "https://github.com/lukasmartinelli/postgis-editor.git"
   },
   "scripts": {
-    "start": "./node_modules/.bin/electron main.js",
+    "start": "electron main.js",
     "build": "npm run build-es6 && npm run build-sass",
     "lint": "eslint src",
     "watch-es6": "babel src -d dist --source-maps inline --watch",

@@ -1,4 +1,4 @@
-# PostGIS Query Editor [![Linux Build Status](https://travis-ci.org/lukasmartinelli/postgis-editor.svg?branch=master)](https://travis-ci.org/lukasmartinelli/postgis-editor) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://tldrlegal.com/license/mit-license) [![Windows Build status](https://ci.appveyor.com/api/projects/status/a90g1nkv2a792w98?svg=true)](https://ci.appveyor.com/project/lukasmartinelli/postgis-editor)
+# PostGIS Query Editor [![Linux Build Status](https://travis-ci.org/lukasmartinelli/postgis-editor.svg?branch=master)](https://travis-ci.org/lukasmartinelli/postgis-editor) [![Windows Build status](https://ci.appveyor.com/api/projects/status/a90g1nkv2a792w98?svg=true)](https://ci.appveyor.com/project/lukasmartinelli/postgis-editor) [![MIT license](https://img.shields.io/badge/license-MIT-blue.svg)](https://tldrlegal.com/license/mit-license)
 
 A very accessible **PostGIS query editor** and visualizer.
 Getting started with [PostGIS](http://postgis.net/) is harder than it should be. We spent much time in **psql** and wished to visualize
@@ -16,9 +16,9 @@ our queries quickly without big complicated tools.
 
 ## Install
 
-Download the app for your platform from the [releases page](https://github.com/lukasmartinelli/postgis-editor/releases/latest).
+[**Download the app for your platform from the releases page**](https://github.com/lukasmartinelli/postgis-editor/releases/latest).
 
-- Download **postgis-editor.app** file for OSX
+- Download and execute **postgis-editor.app** file for OSX
 - Download and extract ZIP and execute **postgis-editor.exe** for Windows
 - Download ZIP and execute **postgis-editor** for Linux
 
