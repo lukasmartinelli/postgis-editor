@@ -7,20 +7,7 @@ import Configstore from 'configstore';
 import pkg from '../package.json';
 
 const conf = new Configstore(pkg.name);
-const testCodeSample = `
-SELECT
-  osm_id_geometry(osm_id, geometry) as osm_id,
-  geometry,
-  road_type(
-    road_class(type, service, access),
-    type, construction, tracktype, service
-  ) AS type,
-  road_class(type, service, access) AS class,
-  road_oneway(oneway) AS oneway, structure
-FROM road_z11
-ORDER BY z_order ASC
-LIMIT 2000
-`;
+const testCodeSample = 'SELECT * FROM ne_10m_airports';
 
 export class Editor extends React.Component {
 	constructor(props) {
