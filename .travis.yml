@@ -10,14 +10,19 @@ env:
 addons:
   artifacts:
     paths:
-    - ./releases
+    - ./releases/*.zip
   apt:
     sources:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install nvm; fi
 script:
   - npm run build
   - npm run lint
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-osx; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux; fi
+  - zip -r ./releases/postgis-editor-linux-x64.zip ./releases/postgis-editor-linux-x64
+  - zip -r ./releases/postgis-editor-darwin-x64.zip ./releases/postgis-editor-darwin-x64
