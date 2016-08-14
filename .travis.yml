@@ -1,12 +1,16 @@
 sudo: required
+matrix:
+  include:
+   - os: linux
+     env: CXX=g++-4.8
+  allow_failures:
+    - os: osx
 language: node_js
 os:
   - linux
   - osx
 node_js:
   - "5.9"
-env:
-  - CXX=g++-4.8
 addons:
   artifacts:
     paths:
