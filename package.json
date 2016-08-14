@@ -1,6 +1,6 @@
 {
   "name": "postgis-editor",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "A PostGIS SQL query editor focused on accessible spatial development.",
   "main": "main.js",
   "license": "MIT",
