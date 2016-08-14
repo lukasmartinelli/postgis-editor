@@ -1,5 +1,8 @@
 sudo: required
 language: node_js
+os:
+  - linux
+  - osx
 node_js:
   - "5.9"
 env:
@@ -16,4 +19,5 @@ addons:
 script:
   - npm run build
   - npm run lint
-  - npm run package-linux
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-osx; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux; fi
