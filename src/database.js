@@ -1,5 +1,4 @@
 import dbgeo from "dbgeo";
-import {parser,lexer} from 'sql-parser';
 
 var pgp = require('pg-promise')();
 
@@ -7,15 +6,6 @@ const errorHandler = error => window.events.publish('query.error', error.message
 
 export class Database {
     runQuery(subquery, cb) {
-        // We can give much better error messages if we try to parse it
-        // before we add our custom SQL transforms
-        try {
-            parser.parse(lexer.tokenize(subquery));
-        } catch(error) {
-            errorHandler(error);
-            return;
-        }
-
         this.transformQuery(subquery).then(({query, geomField}) => {
             return this.db.result(query, true).then((result) => {
                 const parseStart = new Date().getTime();

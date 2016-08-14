@@ -65,7 +65,6 @@
     "react-dom": "^15.2.1",
     "react-modal": "^1.4.0",
     "react-virtualized": "^7.12.1",
-    "sql-parser": "^0.5.0",
     "turf": "^3.0.14"
   }
 }
