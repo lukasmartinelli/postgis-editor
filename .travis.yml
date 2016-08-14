@@ -5,6 +5,9 @@ node_js:
 env:
   - CXX=g++-4.8
 addons:
+  artifacts:
+    paths:
+    - ./releases
   apt:
     sources:
       - ubuntu-toolchain-r-test
