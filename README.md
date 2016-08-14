@@ -44,3 +44,5 @@ Create releases.
 ```bash
 npm run package-all
 ```
+
+The cross platform artifacts on the release page are automatically build by either Travis (for OSX and Linux) and by AppVeyor (for Windows).
