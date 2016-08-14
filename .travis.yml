@@ -16,17 +16,12 @@ addons:
       - ubuntu-toolchain-r-test
     packages:
       - g++-4.8
-before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update && brew tap homebrew/versions; fi
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew install gcc48; fi
 script:
   - npm run build
   - npm run lint
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then npm run package-osx; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then npm run package-linux; fi
-  - mkdir -p ./releases/postgis-editor-linux-x64
-  - mkdir -p ./releases/postgis-editor-darwin-x64
-  - zip -r ./releases/postgis-editor-linux-x64.zip ./releases/postgis-editor-linux-x64
-  - zip -r ./releases/postgis-editor-darwin-x64.zip ./releases/postgis-editor-darwin-x64
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then zip -r ./releases/postgis-editor-darwin-x64.zip ./releases/postgis-editor-darwin-x64; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then zip -r ./releases/postgis-editor-linux-x64.zip ./releases/postgis-editor-linux-x64; fi
   - rm -rf ./releases/postgis-editor-linux-x64
   - rm -rf ./releases/postgis-editor-darwin-x64
