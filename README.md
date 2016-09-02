@@ -23,6 +23,14 @@ Now unzip the release and either execute **postgis-editor.app** for OSX, **postg
 If this project gains traction we can start building installers for Windows and create packages for different Linux distros. You can also clone the repo
 and run **postgis-editor** directly with npm.
 
+## Introduction
+
+Video introduction into using PostGIS editor with Natural Earth data.
+
+**https://www.youtube.com/watch?v=NSIUAca_DEU**
+
+[![Using PostGIS Editor to explore Natural Earth ](https://img.youtube.com/vi/NSIUAca_DEU/0.jpg)](https://www.youtube.com/watch?v=NSIUAca_DEU)
+
 ## Develop
 
 The PostGIS query editor is based on Electron using React and MapboxGL.
